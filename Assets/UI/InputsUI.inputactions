@@ -1,0 +1,56 @@
+{
+    "name": "InputsUI",
+    "maps": [
+        {
+            "name": "Buttons",
+            "id": "35a762fd-8255-4d6c-b750-f24151a83f0f",
+            "actions": [
+                {
+                    "name": "Rotation",
+                    "type": "PassThrough",
+                    "id": "406de423-792a-43c2-b698-326d6a45a3a1",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "1D Axis",
+                    "id": "a5613419-2b85-45c4-8f40-e874bce5a99f",
+                    "path": "1DAxis",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "negative",
+                    "id": "a73a7f3c-cddf-4af2-95a6-edd8a316d06e",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "positive",
+                    "id": "5bda4d8a-4060-41f5-9325-82ae7bfecfbc",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Rotation",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
