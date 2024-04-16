@@ -1,27 +1,34 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private PlayerControls controls;
+    private Vector2 moveInput;
+
+    void Awake()
     {
-        
+        controls = new PlayerControls();
+        controls.Enable();
+
+        controls.Player.Move.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
     }
 
-    // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        int horizontal = Mathf.RoundToInt(Input.GetAxis("Horizontal"));
-        int vertical = Mathf.RoundToInt(Input.GetAxis("Vertical"));
-        
-        Vector2 input = new Vector2(horizontal,vertical); 
-        Vector2 inputDir = input.normalized;
+        Vector2 inputDir = moveInput.normalized;
 
-        if(inputDir != Vector2.zero)
-        transform.eulerAngles = Vector3.up * Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg;  
+        if (inputDir != Vector2.zero)
+        {
+            transform.eulerAngles = Vector3.up * Mathf.Atan2(inputDir.x, inputDir.y) * Mathf.Rad2Deg;
+        }
 
-        transform.Translate(transform.forward * (5f*inputDir.magnitude) * Time.deltaTime, Space.World);
+        transform.Translate(transform.forward * (5f * inputDir.magnitude) * Time.deltaTime, Space.World);
+    }
+
+    void OnDisable()
+    {
+        controls.Disable();
     }
 }
