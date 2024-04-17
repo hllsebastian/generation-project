@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8682721756377345791}
   - component: {fileID: 8682721756377345784}
   - component: {fileID: -6367778489138295145}
-  - component: {fileID: 9143519116192543110}
+  - component: {fileID: 4322875999842568795}
   m_Layer: 0
   m_Name: RuneSphere
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &9143519116192543110
+--- !u!114 &4322875999842568795
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -127,3 +127,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eaf53e49f553cc342966c0afee40ecea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  runeEffects: {fileID: 11400000, guid: 68fe5811a3e23714e861556b617b6fcb, type: 2}
