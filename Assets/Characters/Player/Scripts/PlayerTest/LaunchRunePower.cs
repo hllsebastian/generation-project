@@ -54,7 +54,6 @@ public class LaunchRunePower : MonoBehaviour
     private void LaunchPower()
     {
         Debug.Log("FIREEE");
-        lastBulletTime = Time.time;
         GameObject launchedPower = Instantiate(powerPrefab, firePoint.transform.position, firePoint.transform.rotation);
         timerIsActive = true;
         RuneTimer.StartTimer(timeLimit, onTimerComplete);
