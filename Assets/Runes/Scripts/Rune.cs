@@ -8,7 +8,10 @@ public class Rune : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Destroy(gameObject);
+        //Destroy(gameObject);
+        this.gameObject.GetComponent<MeshRenderer>().enabled = false;
+        this.gameObject.GetComponent<Collider>().enabled = false;
         effects.Apply(other.gameObject);
+        StartCoroutine(effects.ResetEffects(other.gameObject, this.gameObject));
     }
 }
