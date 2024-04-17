@@ -35,6 +35,24 @@ public partial class @InputsUI: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LeftClick"",
+                    ""type"": ""Button"",
+                    ""id"": ""362acf20-c1f7-4123-8954-9b98d31fef2b"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Movement"",
+                    ""type"": ""Value"",
+                    ""id"": ""f971a314-c3ec-456f-bd33-66ac9bfd1a19"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -70,6 +88,28 @@ public partial class @InputsUI: IInputActionCollection2, IDisposable
                     ""action"": ""Rotation"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""60c52411-742d-4e8e-879a-edaac9ee8608"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LeftClick"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""24408dcb-a298-4841-a6c3-083873b5df50"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Movement"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -79,6 +119,8 @@ public partial class @InputsUI: IInputActionCollection2, IDisposable
         // Buttons
         m_Buttons = asset.FindActionMap("Buttons", throwIfNotFound: true);
         m_Buttons_Rotation = m_Buttons.FindAction("Rotation", throwIfNotFound: true);
+        m_Buttons_LeftClick = m_Buttons.FindAction("LeftClick", throwIfNotFound: true);
+        m_Buttons_Movement = m_Buttons.FindAction("Movement", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -141,11 +183,15 @@ public partial class @InputsUI: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Buttons;
     private List<IButtonsActions> m_ButtonsActionsCallbackInterfaces = new List<IButtonsActions>();
     private readonly InputAction m_Buttons_Rotation;
+    private readonly InputAction m_Buttons_LeftClick;
+    private readonly InputAction m_Buttons_Movement;
     public struct ButtonsActions
     {
         private @InputsUI m_Wrapper;
         public ButtonsActions(@InputsUI wrapper) { m_Wrapper = wrapper; }
         public InputAction @Rotation => m_Wrapper.m_Buttons_Rotation;
+        public InputAction @LeftClick => m_Wrapper.m_Buttons_LeftClick;
+        public InputAction @Movement => m_Wrapper.m_Buttons_Movement;
         public InputActionMap Get() { return m_Wrapper.m_Buttons; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -158,6 +204,12 @@ public partial class @InputsUI: IInputActionCollection2, IDisposable
             @Rotation.started += instance.OnRotation;
             @Rotation.performed += instance.OnRotation;
             @Rotation.canceled += instance.OnRotation;
+            @LeftClick.started += instance.OnLeftClick;
+            @LeftClick.performed += instance.OnLeftClick;
+            @LeftClick.canceled += instance.OnLeftClick;
+            @Movement.started += instance.OnMovement;
+            @Movement.performed += instance.OnMovement;
+            @Movement.canceled += instance.OnMovement;
         }
 
         private void UnregisterCallbacks(IButtonsActions instance)
@@ -165,6 +217,12 @@ public partial class @InputsUI: IInputActionCollection2, IDisposable
             @Rotation.started -= instance.OnRotation;
             @Rotation.performed -= instance.OnRotation;
             @Rotation.canceled -= instance.OnRotation;
+            @LeftClick.started -= instance.OnLeftClick;
+            @LeftClick.performed -= instance.OnLeftClick;
+            @LeftClick.canceled -= instance.OnLeftClick;
+            @Movement.started -= instance.OnMovement;
+            @Movement.performed -= instance.OnMovement;
+            @Movement.canceled -= instance.OnMovement;
         }
 
         public void RemoveCallbacks(IButtonsActions instance)
@@ -185,5 +243,7 @@ public partial class @InputsUI: IInputActionCollection2, IDisposable
     public interface IButtonsActions
     {
         void OnRotation(InputAction.CallbackContext context);
+        void OnLeftClick(InputAction.CallbackContext context);
+        void OnMovement(InputAction.CallbackContext context);
     }
 }
