@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private Transform CameraMain;
+    [SerializeField]
     private float playerSpeed = 2.0f;
     private float jumpHeight = 1.0f;
     [SerializeField]
