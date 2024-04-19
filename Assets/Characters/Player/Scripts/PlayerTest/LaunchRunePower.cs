@@ -54,6 +54,7 @@ public class LaunchRunePower : MonoBehaviour
     private void LaunchPower()
     {
         Debug.Log("FIREEE");
+        AudioManager.instance.PlaySoundEffect("SFX1");
         GameObject launchedPower = Instantiate(powerPrefab, firePoint.transform.position, firePoint.transform.rotation);
         timerIsActive = true;
         RuneTimer.StartTimer(timeLimit, onTimerComplete);
