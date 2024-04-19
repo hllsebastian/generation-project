@@ -10,18 +10,11 @@ public class PlayerTest : MonoBehaviour
     private PlayerInput playerInput;
     private InputAction moveAction;
 
-    // public InputsUI uiInput;
-
-    // private void Awake()
-    // {
-    //     uiInput = new InputsUI();
-    // }
-
-
     private void Start()
     {
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
+        AudioManager.instance.PlayMusic("Distant Land_Loop");
     }
 
 
@@ -36,8 +29,4 @@ public class PlayerTest : MonoBehaviour
         transform.position += new Vector3(direction.x, 0, direction.y) * Time.deltaTime * speed;
     }
 
-    // void OnCollisionEnter(Collision other)
-    // {
-    //     Debug.Log("Colisionó con: " + other.gameObject.name);
-    // }
 }

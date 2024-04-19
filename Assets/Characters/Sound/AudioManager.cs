@@ -31,9 +31,10 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
+        Debug.Log(sounds);
     }
 
-    public void Play(string name)
+    public void PlayMusic(string name)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name && sound.isMusic);
         if (s == null)
