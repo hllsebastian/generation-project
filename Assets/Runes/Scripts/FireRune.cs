@@ -10,4 +10,9 @@ public class FireRune : RuneEffects
         Debug.Log("Apply Fire Run");
         LaunchRunePower.isFireEnable = true;
     }
+
+    public override IEnumerator ResetEffects(GameObject target, GameObject r)
+    {
+        throw new System.NotImplementedException();
+    }
 }
