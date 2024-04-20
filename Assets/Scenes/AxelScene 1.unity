@@ -594,7 +594,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471036885}
-  m_LocalRotation: {x: 0.10933782, y: -0.000000018829946, z: 0.0000000020712432, w: 0.99400467}
+  m_LocalRotation: {x: 0.10933779, y: -0.000000015343682, z: 0.0000000016877633, w: 0.99400467}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -603,6 +603,27 @@ Transform:
   m_Father: {fileID: 171455216}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &481114812 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2990129044503969924, guid: 07dfe4ce31112844e895e0abe50bdce0, type: 3}
+  m_PrefabInstance: {fileID: 2990129044699495061}
+  m_PrefabAsset: {fileID: 0}
+--- !u!54 &481114816
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 481114812}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &538152840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1191,7 +1212,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867393654}
-  m_LocalRotation: {x: 0.036207665, y: 0.000000034457297, z: -0.0000000012484369, w: 0.9993443}
+  m_LocalRotation: {x: 0.036207665, y: -0.000000034457297, z: 0.0000000012484369, w: 0.9993443}
   m_LocalPosition: {x: -0.11316562, y: 0.67531466, z: -118.82224}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1380,7 +1401,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158133452}
-  m_LocalRotation: {x: 0.03620767, y: 0.000000017328913, z: -6.2785127e-10, w: 0.9993443}
+  m_LocalRotation: {x: 0.03620767, y: -0.00000001732891, z: 6.278511e-10, w: 0.9993443}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1856,7 +1877,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.5754717, g: 0, b: 0.2174003, a: 1}
+        key0: {r: 0.41509432, g: 0.11160554, b: 0.14680725, a: 1}
         key1: {r: 0, g: 0, b: 0, a: 1}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -1865,7 +1886,7 @@ ParticleSystem:
         key6: {r: 0, g: 0, b: 0, a: 0}
         key7: {r: 0, g: 0, b: 0, a: 0}
         ctime0: 20046
-        ctime1: 24094
+        ctime1: 35466
         ctime2: 0
         ctime3: 0
         ctime4: 0
@@ -6378,7 +6399,7 @@ SphereCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1534534043}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Radius: 3.9493592
