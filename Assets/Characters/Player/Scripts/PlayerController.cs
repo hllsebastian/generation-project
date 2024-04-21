@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     private  Transform child;
     private Animator anim;
     private bool _isAlive = true;
+
 
    public bool isAlive
     {
@@ -96,11 +97,6 @@ public class PlayerController : MonoBehaviour
     {
 
     }
-    private void OnTriggerEnter(Collider other) {
-    Debug.Log("Collision Detected with " + other.gameObject.name);
-    if(other.isTrigger){
-        SceneManager.LoadScene(1);
-    }
-}
+    
 
 }
