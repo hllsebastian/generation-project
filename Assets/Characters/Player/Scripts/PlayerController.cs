@@ -78,6 +78,7 @@ public class PlayerController : MonoBehaviour
             Walk();
         }
         else{
+            anim.SetFloat("Speed", 0f);
             anim.SetBool("Moving", false);
         }
         
@@ -87,8 +88,8 @@ public class PlayerController : MonoBehaviour
     {
         
         speed = playerSpeed;
-        anim.SetTrigger("Start");
         anim.SetBool("Moving", true);
+        anim.SetFloat("Speed", 1.0f);
 
     }
     private void Jump()
