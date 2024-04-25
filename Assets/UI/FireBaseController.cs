@@ -9,6 +9,7 @@ using Firebase.Auth;
 using System;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
+using Firebase.Firestore;
 public class FireBaseController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class FireBaseController : MonoBehaviour
     public Toggle remember;
     Firebase.Auth.FirebaseAuth auth;
     Firebase.Auth.FirebaseUser user;
+
     bool isSigned=false;
     void Start() {
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
@@ -101,6 +103,33 @@ public class FireBaseController : MonoBehaviour
         profUser.text = "";
         Oplog();
     }
+    private void AddData(){
+      FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+        DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
+Dictionary<string, object> user = new Dictionary<string, object>
+{
+        { "x", 0 },
+        { "y", 0 },
+        { "z", 0 },
+        { "scene", 0 },
+};
+docRef.SetAsync(user).ContinueWithOnMainThread(task => {
+        Debug.Log("Added data to the alovelace document in the users collection.");
+});
+    }
+    /*private void AddData(){
+           FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+     DocumentReference docRef = db.Collection("cities").Document(auth.CurrentUser.UserId);
+Dictionary<string, object> city = new Dictionary<string, object>
+{
+        { "Name", "Los Angeles" },
+        { "State", "CA" },
+        { "Country", "USA" }
+};
+docRef.SetAsync(city).ContinueWithOnMainThread(task => {
+        Debug.Log("Added data to the LA document in the cities collection.");
+});
+    }*/
     private void CreateUser(string email, string password, string user){
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task => {
   if (task.IsCanceled) {
@@ -124,6 +153,7 @@ public class FireBaseController : MonoBehaviour
   Firebase.Auth.AuthResult result = task.Result;
   Debug.LogFormat("Firebase user created successfully: {0} ({1})",
       result.User.DisplayName, result.User.UserId);
+      
       updateuserprofile(user);
         });
 
@@ -154,7 +184,7 @@ public class FireBaseController : MonoBehaviour
       result.User.DisplayName, result.User.UserId);
         profEmail.text = "" + result.User.Email;
         profUser.text = ""+ result.User.DisplayName;
-        Debug.Log(result.User.Email+""+result.User.DisplayName);
+        Debug.Log(result.User.DisplayName+"--"+result.User.Email);
         Opprofile();
         });
         
@@ -189,6 +219,7 @@ void updateuserprofile(string Username){
 if (user != null) {
   Firebase.Auth.UserProfile profile = new Firebase.Auth.UserProfile {
     DisplayName = Username,
+    
     PhotoUrl = new System.Uri("https://example.com/jane-q-user/profile.jpg"),
     
 
@@ -204,6 +235,7 @@ if (user != null) {
     }
 
     Debug.Log("User profile updated successfully."+Username);
+    AddData();
     notierror("Alert","Acount Succesfully created");
   });
 

@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
         isDamagable = true;
     }
 
-    private void OnTriggerStay(Collider other)
+   private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.CompareTag("Enemy") && !hasHit)
         {
@@ -142,5 +142,5 @@ public class PlayerController : MonoBehaviour
         }
 
     }
-
+     
 }
