@@ -29,30 +29,23 @@ public class BasedeDatos : MonoBehaviour
       Debug.Log("x"+ transform.position.x);
       Debug.Log("y"+ transform.position.y);
       Debug.Log("z"+ transform.position.z);
-      PlayerPrefs.SetInt("PrimeraCarga", SceneManager.GetActiveScene().buildIndex);
+      PlayerPrefs.SetInt("PrimeraCarga", SceneManager.GetActiveScene().buildIndex); //actualiza que no es la primera vez que entra en escena
+      int primeraCarga = PlayerPrefs.GetInt("PrimeraCarga");
+      Debug.Log("Valor de PrimeraCarga: " + primeraCarga);
    
         
     }
 
 }
     void Start() {
-     // PlayerPrefs.SetInt("PrimeraCarga", 1);
-       int primeraCarga = PlayerPrefs.GetInt("PrimeraCarga", 1);
+     //PlayerPrefs.SetInt("PrimeraCarga", 0); //usado para probar el juego 
+       int primeraCarga = PlayerPrefs.GetInt("PrimeraCarga");
 
     // Imprime el valor en la consola
     Debug.Log("Valor de PrimeraCarga: " + primeraCarga);
       // Comprueba si es la primera vez que se carga la escena
-    if (PlayerPrefs.GetInt("PrimeraCarga", 1) == 1)
+    if (PlayerPrefs.GetInt("PrimeraCarga") != SceneManager.GetActiveScene().buildIndex-1)
     {
-        // Si es la primera vez, coloca el objeto en la posición predeterminada
-        //Player.transform.position = posicionPredeterminada;
-
-        // Guarda en PlayerPrefs que ya no es la primera carga
-        //PlayerPrefs.SetInt("PrimeraCarga", SceneManager.GetActiveScene().buildIndex);
-    }
-    else
-    {
-        // Si no es la primera vez, lee la posición desde la base de datos
         StartCoroutine(ReadDataCoroutine());
     }
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
@@ -75,29 +68,16 @@ public class BasedeDatos : MonoBehaviour
   auth.StateChanged += AuthStateChanged;
   AuthStateChanged(this, null);
 }
-/*public void DesactivarControlador()
-    {
-        PlayerController controlador = Player.GetComponent<PlayerController>();
-        controlador.enabled = false;
-         ReadData();
-         //Player.transform.position= miVector;
-         controlador.enabled = true;
-    }*/
+
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.C)){
-         //  DesactivarControlador();
-           // ReadData();
+        if(Input.GetKeyDown(KeyCode.C)){ //carga datos
+
            StartCoroutine(ReadDataCoroutine());
         
           
         }
-        /*if(Input.GetKeyDown(KeyCode.G)){
-        
-          Player.transform.position= miVector;
-          carga=false;
-        }*/
     }
   
     private void UpdateData(){
@@ -117,28 +97,7 @@ docRef.UpdateAsync(user).ContinueWithOnMainThread(task => {
         Debug.Log("Added data to the alovelace document in the users collection."+auth.CurrentUser.UserId);
 });
     }
-   /* private void ReadData(){ //ejemplo
-        CollectionReference usersRef = db.Collection("users");
-    usersRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-{
-  QuerySnapshot snapshot = task.Result;
-  foreach (DocumentSnapshot document in snapshot.Documents)
-  {
-    Debug.Log(String.Format("User: {0}", document.Id));
-    Dictionary<string, object> documentDictionary = document.ToDictionary();
-    Debug.Log(String.Format("First: {0}", documentDictionary["First"]));
-    if (documentDictionary.ContainsKey("Middle"))
-    {
-      Debug.Log(String.Format("Middle: {0}", documentDictionary["Middle"]));
-    }
 
-    Debug.Log(String.Format("Last: {0}", documentDictionary["Last"]));
-    Debug.Log(String.Format("Born: {0}", documentDictionary["Born"]));
-  }
-
-  Debug.Log("Read all data from the users collection.");
-});
-    } */
     private void ReadData(){
       PlayerController controlador = Player.GetComponent<PlayerController>();
         controlador.enabled = false;
@@ -152,14 +111,14 @@ docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
     Dictionary<string, object> user = snapshot.ToDictionary();
     Debug.Log("ahora voy a");
   
-    // Player.transform.position=new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
+
 Debug.Log("x"+ Convert.ToSingle(user["x"]) +"y "+Convert.ToSingle(user["y"])+"z "+Convert.ToSingle(user["z"]));
 
    foreach (KeyValuePair<string, object> pair in user) {
 
       Debug.Log(String.Format("{0}: {1}", pair.Key, pair.Value));
     }
-   // miVector=new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
+
    Player.transform.position=new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
   } else {
     Debug.Log(String.Format("Document {0} does not exist!", snapshot.Id));
@@ -216,7 +175,6 @@ controlador.enabled = true;
     user = auth.CurrentUser;
     if (signedIn) {
       Debug.Log("Signed in " + user.UserId);
-      //isSigned=true;
     }
   }
 }
