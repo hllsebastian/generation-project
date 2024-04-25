@@ -12,10 +12,12 @@ using System.Threading.Tasks;
 public class BasedeDatos : MonoBehaviour
 {
     public GameObject Player;
+
+    private Vector3 miVector;
     Firebase.Auth.FirebaseAuth auth;
     Firebase.Auth.FirebaseUser user;
     
-  
+    // Start is called before the first frame update
     private void Awake() {
         Player=GameObject.FindGameObjectWithTag("Player");
 
@@ -32,7 +34,6 @@ public class BasedeDatos : MonoBehaviour
     }
 
 }
-      // Start is called before the first frame update
     void Start() {
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
   var dependencyStatus = task.Result;
@@ -54,17 +55,29 @@ public class BasedeDatos : MonoBehaviour
   auth.StateChanged += AuthStateChanged;
   AuthStateChanged(this, null);
 }
-
+/*public void DesactivarControlador()
+    {
+        PlayerController controlador = Player.GetComponent<PlayerController>();
+        controlador.enabled = false;
+         ReadData();
+         //Player.transform.position= miVector;
+         controlador.enabled = true;
+    }*/
     // Update is called once per frame
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.C)){
-        
+         //  DesactivarControlador();
+           // ReadData();
            StartCoroutine(ReadDataCoroutine());
         
           
         }
+        /*if(Input.GetKeyDown(KeyCode.G)){
         
+          Player.transform.position= miVector;
+          carga=false;
+        }*/
     }
   
     private void UpdateData(){
@@ -84,7 +97,28 @@ docRef.UpdateAsync(user).ContinueWithOnMainThread(task => {
         Debug.Log("Added data to the alovelace document in the users collection."+auth.CurrentUser.UserId);
 });
     }
-   
+   /* private void ReadData(){ //ejemplo
+        CollectionReference usersRef = db.Collection("users");
+    usersRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+{
+  QuerySnapshot snapshot = task.Result;
+  foreach (DocumentSnapshot document in snapshot.Documents)
+  {
+    Debug.Log(String.Format("User: {0}", document.Id));
+    Dictionary<string, object> documentDictionary = document.ToDictionary();
+    Debug.Log(String.Format("First: {0}", documentDictionary["First"]));
+    if (documentDictionary.ContainsKey("Middle"))
+    {
+      Debug.Log(String.Format("Middle: {0}", documentDictionary["Middle"]));
+    }
+
+    Debug.Log(String.Format("Last: {0}", documentDictionary["Last"]));
+    Debug.Log(String.Format("Born: {0}", documentDictionary["Born"]));
+  }
+
+  Debug.Log("Read all data from the users collection.");
+});
+    } */
     private void ReadData(){
       PlayerController controlador = Player.GetComponent<PlayerController>();
         controlador.enabled = false;
@@ -98,14 +132,14 @@ docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
     Dictionary<string, object> user = snapshot.ToDictionary();
     Debug.Log("ahora voy a");
   
-   
+    // Player.transform.position=new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
 Debug.Log("x"+ Convert.ToSingle(user["x"]) +"y "+Convert.ToSingle(user["y"])+"z "+Convert.ToSingle(user["z"]));
 
    foreach (KeyValuePair<string, object> pair in user) {
 
       Debug.Log(String.Format("{0}: {1}", pair.Key, pair.Value));
     }
-
+   // miVector=new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
    Player.transform.position=new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
   } else {
     Debug.Log(String.Format("Document {0} does not exist!", snapshot.Id));
@@ -125,7 +159,7 @@ controlador.enabled = true;
 
     Task<DocumentSnapshot> task = docRef.GetSnapshotAsync();
     yield return new WaitUntil(() => task.IsCompleted);
-
+    
     if (task.Result.Exists)
     {
         Debug.Log(String.Format("Document data for {0} document:", task.Result.Id));
@@ -145,7 +179,7 @@ controlador.enabled = true;
     {
         Debug.Log(String.Format("Document {0} does not exist!", task.Result.Id));
     }
-
+  yield return new WaitForSeconds(2);
     controlador.enabled = true;
 }
 
