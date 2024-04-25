@@ -594,7 +594,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471036885}
-  m_LocalRotation: {x: 0.10933782, y: -0.000000018829946, z: 0.0000000020712432, w: 0.99400467}
+  m_LocalRotation: {x: 0.10933779, y: 0.000000015343678, z: -0.0000000016877628, w: 0.99400467}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -624,24 +624,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!1 &521483040 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6212553083672278116, guid: 79778b1889240f04fa93251392d7925a, type: 3}
-  m_PrefabInstance: {fileID: 5171186892778523519}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &521483041
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 521483040}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e50ebb4e1f3be146b53ab3c2f7445e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Player: {fileID: 0}
 --- !u!1 &538152840
 GameObject:
   m_ObjectHideFlags: 0
@@ -1230,7 +1212,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867393654}
-  m_LocalRotation: {x: 0.036207665, y: -0.000000034457297, z: 0.0000000012484369, w: 0.9993443}
+  m_LocalRotation: {x: 0.036207665, y: 0.000000034457297, z: -0.0000000012484369, w: 0.9993443}
   m_LocalPosition: {x: -0.11316562, y: 0.6663146, z: -118.82224}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1419,7 +1401,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158133452}
-  m_LocalRotation: {x: 0.03620767, y: -0.000000017328913, z: 6.2785127e-10, w: 0.9993443}
+  m_LocalRotation: {x: 0.03620767, y: 0.00000001732891, z: -6.278511e-10, w: 0.9993443}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

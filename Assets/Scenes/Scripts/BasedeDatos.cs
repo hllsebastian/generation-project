@@ -29,12 +29,32 @@ public class BasedeDatos : MonoBehaviour
       Debug.Log("x"+ transform.position.x);
       Debug.Log("y"+ transform.position.y);
       Debug.Log("z"+ transform.position.z);
+      PlayerPrefs.SetInt("PrimeraCarga", SceneManager.GetActiveScene().buildIndex);
    
         
     }
 
 }
     void Start() {
+     // PlayerPrefs.SetInt("PrimeraCarga", 1);
+       int primeraCarga = PlayerPrefs.GetInt("PrimeraCarga", 1);
+
+    // Imprime el valor en la consola
+    Debug.Log("Valor de PrimeraCarga: " + primeraCarga);
+      // Comprueba si es la primera vez que se carga la escena
+    if (PlayerPrefs.GetInt("PrimeraCarga", 1) == 1)
+    {
+        // Si es la primera vez, coloca el objeto en la posición predeterminada
+        //Player.transform.position = posicionPredeterminada;
+
+        // Guarda en PlayerPrefs que ya no es la primera carga
+        //PlayerPrefs.SetInt("PrimeraCarga", SceneManager.GetActiveScene().buildIndex);
+    }
+    else
+    {
+        // Si no es la primera vez, lee la posición desde la base de datos
+        StartCoroutine(ReadDataCoroutine());
+    }
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
   var dependencyStatus = task.Result;
   if (dependencyStatus == Firebase.DependencyStatus.Available) {
@@ -174,6 +194,9 @@ controlador.enabled = true;
         }
 
         Player.transform.position = new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
+        if(Convert.ToInt32(user["scene"])!=SceneManager.GetActiveScene().buildIndex){
+         SceneManager.LoadScene(Convert.ToInt32(user["scene"]));
+        }
     }
     else
     {
