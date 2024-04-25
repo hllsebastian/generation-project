@@ -5,18 +5,17 @@ using Firebase.Firestore;
 using Firebase.Extensions;
 using System;
 using UnityEngine.SceneManagement;
+using System.Threading.Tasks;
 
 
 
 public class BasedeDatos : MonoBehaviour
 {
     public GameObject Player;
-    private bool carga=false;
-    private Vector3 miVector;
     Firebase.Auth.FirebaseAuth auth;
     Firebase.Auth.FirebaseUser user;
     
-    // Start is called before the first frame update
+  
     private void Awake() {
         Player=GameObject.FindGameObjectWithTag("Player");
 
@@ -28,10 +27,12 @@ public class BasedeDatos : MonoBehaviour
       Debug.Log("x"+ transform.position.x);
       Debug.Log("y"+ transform.position.y);
       Debug.Log("z"+ transform.position.z);
+   
         
     }
 
 }
+      // Start is called before the first frame update
     void Start() {
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
   var dependencyStatus = task.Result;
@@ -58,13 +59,12 @@ public class BasedeDatos : MonoBehaviour
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.C)){
-           ReadData();
+        
+           StartCoroutine(ReadDataCoroutine());
+        
           
         }
-        if(Input.GetKeyDown(KeyCode.G)){
-          Player.transform.position= miVector;
-          carga=false;
-        }
+        
     }
   
     private void UpdateData(){
@@ -84,29 +84,10 @@ docRef.UpdateAsync(user).ContinueWithOnMainThread(task => {
         Debug.Log("Added data to the alovelace document in the users collection."+auth.CurrentUser.UserId);
 });
     }
-   /* private void ReadData(){ //ejemplo
-        CollectionReference usersRef = db.Collection("users");
-    usersRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-{
-  QuerySnapshot snapshot = task.Result;
-  foreach (DocumentSnapshot document in snapshot.Documents)
-  {
-    Debug.Log(String.Format("User: {0}", document.Id));
-    Dictionary<string, object> documentDictionary = document.ToDictionary();
-    Debug.Log(String.Format("First: {0}", documentDictionary["First"]));
-    if (documentDictionary.ContainsKey("Middle"))
-    {
-      Debug.Log(String.Format("Middle: {0}", documentDictionary["Middle"]));
-    }
-
-    Debug.Log(String.Format("Last: {0}", documentDictionary["Last"]));
-    Debug.Log(String.Format("Born: {0}", documentDictionary["Born"]));
-  }
-
-  Debug.Log("Read all data from the users collection.");
-});
-    } */
+   
     private void ReadData(){
+      PlayerController controlador = Player.GetComponent<PlayerController>();
+        controlador.enabled = false;
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
 docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
@@ -117,22 +98,57 @@ docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
     Dictionary<string, object> user = snapshot.ToDictionary();
     Debug.Log("ahora voy a");
   
-    miVector=new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
-    carga=true;
-    Debug.Log("new pos"+ miVector +"player actual "+Player.transform.position);
-                
-   /* foreach (KeyValuePair<string, object> pair in user) {
+   
+Debug.Log("x"+ Convert.ToSingle(user["x"]) +"y "+Convert.ToSingle(user["y"])+"z "+Convert.ToSingle(user["z"]));
+
+   foreach (KeyValuePair<string, object> pair in user) {
 
       Debug.Log(String.Format("{0}: {1}", pair.Key, pair.Value));
-    }*/
-   // miVector=new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
+    }
+
+   Player.transform.position=new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
   } else {
     Debug.Log(String.Format("Document {0} does not exist!", snapshot.Id));
   }
+  
 });
 
-
+controlador.enabled = true;
     }
+    private IEnumerator ReadDataCoroutine()
+{
+    PlayerController controlador = Player.GetComponent<PlayerController>();
+    controlador.enabled = false;
+
+    FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+    DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
+
+    Task<DocumentSnapshot> task = docRef.GetSnapshotAsync();
+    yield return new WaitUntil(() => task.IsCompleted);
+
+    if (task.Result.Exists)
+    {
+        Debug.Log(String.Format("Document data for {0} document:", task.Result.Id));
+        Dictionary<string, object> user = task.Result.ToDictionary();
+        Debug.Log("ahora voy a");
+
+        Debug.Log("x" + Convert.ToSingle(user["x"]) + "y " + Convert.ToSingle(user["y"]) + "z " + Convert.ToSingle(user["z"]));
+
+        foreach (KeyValuePair<string, object> pair in user)
+        {
+            Debug.Log(String.Format("{0}: {1}", pair.Key, pair.Value));
+        }
+
+        Player.transform.position = new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
+    }
+    else
+    {
+        Debug.Log(String.Format("Document {0} does not exist!", task.Result.Id));
+    }
+
+    controlador.enabled = true;
+}
+
     void AuthStateChanged(object sender, System.EventArgs eventArgs) {
   if (auth.CurrentUser != user) {
     bool signedIn = user != auth.CurrentUser && auth.CurrentUser != null
