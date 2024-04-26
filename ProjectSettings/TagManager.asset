@@ -6,6 +6,9 @@ TagManager:
   tags:
   - FireGround
   - InvisibleGround
+  - Save_point
+  - Enemy
+  - load
   layers:
   - Default
   - TransparentFX

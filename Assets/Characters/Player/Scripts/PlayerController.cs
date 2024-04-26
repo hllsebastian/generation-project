@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+
 public class PlayerController : MonoBehaviour
 {
     private CharacterController controller;
@@ -14,6 +15,10 @@ public class PlayerController : MonoBehaviour
     private Transform child;
     private Animator anim;
     private bool _isAlive = true;
+    private bool isDamagable = true;
+    private bool hasHit = false;
+    [SerializeField] public int attackDamage, health;
+
 
     public bool isAlive
     {
@@ -50,6 +55,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
+        transform.GetChild(0).position = controller.transform.position;
     }
 
     private void Move()
@@ -91,6 +97,7 @@ public class PlayerController : MonoBehaviour
         }
         else
         {
+            anim.SetFloat("Speed", 0f);
             anim.SetBool("Moving", false);
         }
 
@@ -100,12 +107,53 @@ public class PlayerController : MonoBehaviour
     {
 
         speed = playerSpeed;
-        anim.SetTrigger("Start");
         anim.SetBool("Moving", true);
+        anim.SetFloat("Speed", 1.0f);
 
     }
     private void Jump()
     {
+
+    }
+
+
+    IEnumerator onDeath()
+    {
+
+        isAlive = false;
+        isDamagable = false;
+        yield return new WaitForSeconds(4f);
+        Destroy(gameObject);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (isDamagable)
+        {
+            speed = 0f;
+            health -= damage;
+            Debug.Log("Player hit");
+            anim.SetTrigger("isHit");
+            isDamagable = false;
+            Invoke(nameof(ResetDamagable), 1f);
+        }
+
+        if (health <= 0) StartCoroutine(onDeath());
+    }
+
+    private void ResetDamagable()
+    {
+        isDamagable = true;
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy") && !hasHit)
+        {
+            Debug.Log("Damage to: " + other.gameObject.name);
+            //other.GetComponent<EnemyController>().TakeDamage(attackDamage, 1.0f);
+            hasHit = true;
+        }
 
     }
 
