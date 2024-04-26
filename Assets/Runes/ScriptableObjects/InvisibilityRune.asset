@@ -12,4 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3430ef47756f845459f2c71e3b07c801, type: 3}
   m_Name: InvisibilityRune
   m_EditorClassIdentifier: 
+  runeImage: {fileID: 0}
+  index: 1
   alpha: {r: 0.21960786, g: 0.21960786, b: 0.21960786, a: 0.0627451}

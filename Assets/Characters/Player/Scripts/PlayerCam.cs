@@ -53,6 +53,15 @@ public partial class @PlayerCam: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Action"",
+                    ""type"": ""Value"",
+                    ""id"": ""a83c4197-e13e-4c6f-a6cb-cdd4a7e937b1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -143,6 +152,28 @@ public partial class @PlayerCam: IInputActionCollection2, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""fc72e7ad-27fe-4b61-81be-980306c5af20"",
+                    ""path"": ""<Gamepad>/rightStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5d25d6e6-e212-4e57-b47f-11977aa3435a"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -154,6 +185,7 @@ public partial class @PlayerCam: IInputActionCollection2, IDisposable
         m_Playercinem_look = m_Playercinem.FindAction("look", throwIfNotFound: true);
         m_Playercinem_Move = m_Playercinem.FindAction("Move", throwIfNotFound: true);
         m_Playercinem_Jump = m_Playercinem.FindAction("Jump", throwIfNotFound: true);
+        m_Playercinem_Action = m_Playercinem.FindAction("Action", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -218,6 +250,7 @@ public partial class @PlayerCam: IInputActionCollection2, IDisposable
     private readonly InputAction m_Playercinem_look;
     private readonly InputAction m_Playercinem_Move;
     private readonly InputAction m_Playercinem_Jump;
+    private readonly InputAction m_Playercinem_Action;
     public struct PlayercinemActions
     {
         private @PlayerCam m_Wrapper;
@@ -225,6 +258,7 @@ public partial class @PlayerCam: IInputActionCollection2, IDisposable
         public InputAction @look => m_Wrapper.m_Playercinem_look;
         public InputAction @Move => m_Wrapper.m_Playercinem_Move;
         public InputAction @Jump => m_Wrapper.m_Playercinem_Jump;
+        public InputAction @Action => m_Wrapper.m_Playercinem_Action;
         public InputActionMap Get() { return m_Wrapper.m_Playercinem; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -243,6 +277,9 @@ public partial class @PlayerCam: IInputActionCollection2, IDisposable
             @Jump.started += instance.OnJump;
             @Jump.performed += instance.OnJump;
             @Jump.canceled += instance.OnJump;
+            @Action.started += instance.OnAction;
+            @Action.performed += instance.OnAction;
+            @Action.canceled += instance.OnAction;
         }
 
         private void UnregisterCallbacks(IPlayercinemActions instance)
@@ -256,6 +293,9 @@ public partial class @PlayerCam: IInputActionCollection2, IDisposable
             @Jump.started -= instance.OnJump;
             @Jump.performed -= instance.OnJump;
             @Jump.canceled -= instance.OnJump;
+            @Action.started -= instance.OnAction;
+            @Action.performed -= instance.OnAction;
+            @Action.canceled -= instance.OnAction;
         }
 
         public void RemoveCallbacks(IPlayercinemActions instance)
@@ -278,5 +318,6 @@ public partial class @PlayerCam: IInputActionCollection2, IDisposable
         void OnLook(InputAction.CallbackContext context);
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnAction(InputAction.CallbackContext context);
     }
 }

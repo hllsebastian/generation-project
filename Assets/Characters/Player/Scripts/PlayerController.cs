@@ -9,12 +9,13 @@ public class PlayerController : MonoBehaviour
     private bool groundedPlayer;
     private Transform CameraMain;
     [SerializeField] private float backSpeed, rotationSpeed, gravityValue, jumpHeight, playerSpeed, speed;
+    [SerializeField] private GameObject TutorialRune;
     private PlayerCam playerinput;
-    private  Transform child;
+    private Transform child;
     private Animator anim;
     private bool _isAlive = true;
 
-   public bool isAlive
+    public bool isAlive
     {
         get { return _isAlive; }
         private set
@@ -27,21 +28,23 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         playerinput = new PlayerCam();
-        controller= GetComponent<CharacterController>();
+        controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
     }
-      private void OnEnable() {
+    private void OnEnable()
+    {
         playerinput.Enable();
     }
-    private void OnDisable() {
+    private void OnDisable()
+    {
         playerinput.Disable();
     }
 
 
     private void Start()
     {
-        CameraMain=Camera.main.transform;
-        child=transform.GetChild(0).transform;
+        CameraMain = Camera.main.transform;
+        child = transform.GetChild(0).transform;
     }
 
     private void Update()
@@ -57,10 +60,19 @@ public class PlayerController : MonoBehaviour
             playerVelocity.y = 0f;
         }
         Vector2 moveinput = playerinput.Playercinem.Move.ReadValue<Vector2>();
-        Vector3 move =  (CameraMain.forward*moveinput.y+CameraMain.right*moveinput.x); //new Vector3(moveinput.x , 0f , moveinput.y);    
-        move.y= 0f;
+        Vector3 move = (CameraMain.forward * moveinput.y + CameraMain.right * moveinput.x); //new Vector3(moveinput.x , 0f , moveinput.y);    
+        move.y = 0f;
         controller.Move(move * Time.deltaTime * playerSpeed);
-       
+
+        // To display only on tutorial scene
+        if (TutorialManager.isTutorial1)
+            if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1)
+            {
+                TutorialManager.Instance.StepCompleted();
+                TutorialManager.isTutorial1 = false;
+                TutorialRune.SetActive(true);
+                TutorialManager.isTutorial2 = true;
+            }
 
         // Changes the height position of the player..
         if (playerinput.Playercinem.Jump.triggered && groundedPlayer)
@@ -71,21 +83,22 @@ public class PlayerController : MonoBehaviour
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
-        if(moveinput != Vector2.zero)
+        if (moveinput != Vector2.zero)
         {
-            Quaternion rotation = Quaternion.Euler(new Vector3 (child.localEulerAngles.x,CameraMain.localEulerAngles.y,child.localEulerAngles.z));
-            child.rotation = Quaternion.Lerp(child.rotation , rotation ,  Time.deltaTime* rotationSpeed  );
+            Quaternion rotation = Quaternion.Euler(new Vector3(child.localEulerAngles.x, CameraMain.localEulerAngles.y, child.localEulerAngles.z));
+            child.rotation = Quaternion.Lerp(child.rotation, rotation, Time.deltaTime * rotationSpeed);
             Walk();
         }
-        else{
+        else
+        {
             anim.SetBool("Moving", false);
         }
-        
+
     }
 
     private void Walk()
     {
-        
+
         speed = playerSpeed;
         anim.SetTrigger("Start");
         anim.SetBool("Moving", true);

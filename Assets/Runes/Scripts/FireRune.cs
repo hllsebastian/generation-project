@@ -7,7 +7,6 @@ public class FireRune : RuneEffects
 {
     public override void Apply(GameObject target)
     {
-        Debug.Log("Apply Fire Run");
         LaunchRunePower.isFireEnable = true;
     }
 
