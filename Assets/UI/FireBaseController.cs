@@ -22,14 +22,26 @@ public class FireBaseController : MonoBehaviour
 
     bool isSigned=false;
     void Start() {
-      
+      /*
       Debug.Log(""+remember.isOn.CompareTo(true));
+
+      if(remember.isOn.CompareTo(true)==0){
+
+      }*/
+     // logout();
+
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
   var dependencyStatus = task.Result;
   if (dependencyStatus == Firebase.DependencyStatus.Available) {
     // Create and hold a reference to your FirebaseApp,
     // where app is a Firebase.FirebaseApp property of your application class.
+      
        InitializeFirebase();
+        if (PlayerPrefs.GetInt("Recordar") == -1)
+    {
+        logout();
+    }
+       
 
     // Set a flag here to indicate whether Firebase is ready to use by your app.
   } else {
@@ -72,6 +84,7 @@ public class FireBaseController : MonoBehaviour
             return;
         }
         //log in 
+        PlayerPrefs.SetInt("Recordar",remember.isOn.CompareTo(true));
         SignUser(Logemail.text,logpass.text);
     }
     public void SignUpUser(){
