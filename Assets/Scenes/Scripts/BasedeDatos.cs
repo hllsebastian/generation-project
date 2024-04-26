@@ -6,12 +6,14 @@ using Firebase.Extensions;
 using System;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
+using UnityEngine.UI;
 
 
 
 public class BasedeDatos : MonoBehaviour
 {
     public GameObject Player;
+     public Image load;
 
     private Vector3 miVector;
     Firebase.Auth.FirebaseAuth auth;
@@ -20,6 +22,8 @@ public class BasedeDatos : MonoBehaviour
     // Start is called before the first frame update
     private void Awake() {
         Player=GameObject.FindGameObjectWithTag("Player");
+
+      
 
     }
     private void OnTriggerEnter(Collider other) {
@@ -132,6 +136,8 @@ controlador.enabled = true;
     }
     private IEnumerator ReadDataCoroutine()
 {
+  load.enabled = true;
+
     PlayerController controlador = Player.GetComponent<PlayerController>();
     controlador.enabled = false;
 
@@ -165,6 +171,7 @@ controlador.enabled = true;
     }
   yield return new WaitForSeconds(2);
     controlador.enabled = true;
+    load.enabled = true;
 }
 
     void AuthStateChanged(object sender, System.EventArgs eventArgs) {
