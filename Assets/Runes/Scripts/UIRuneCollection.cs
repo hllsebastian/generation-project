@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +13,7 @@ public class UIRuneCollection : MonoBehaviour
     [SerializeField] public List<GameObject> collectedRunesObject = new List<GameObject>();
     [SerializeField] Slider slider;
     [SerializeField] GameObject timerObject;
-    [SerializeField] TextMeshProUGUI timerText;
+    // [SerializeField] TextMeshProUGUI timerText;
 
     private float currentTime;
     private float maxTime;
@@ -85,7 +84,7 @@ public class UIRuneCollection : MonoBehaviour
         currentTime -= Time.deltaTime;
         if (currentTime >= 0)
         {
-            timerText.text = currentTime.ToString("0");
+            // timerText.text = currentTime.ToString("0");
             slider.value = currentTime;
             slider.maxValue = 3;
         }

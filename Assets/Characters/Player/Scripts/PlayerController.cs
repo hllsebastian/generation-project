@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 
 public class PlayerController : MonoBehaviour
@@ -71,14 +72,15 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         // To display only on tutorial scene
-        if (TutorialManager.isTutorial1)
-            if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1)
-            {
-                TutorialManager.Instance.StepCompleted();
-                TutorialManager.isTutorial1 = false;
-                TutorialRune.SetActive(true);
-                TutorialManager.isTutorial2 = true;
-            }
+        // if (SceneManager.GetActiveScene().buildIndex == 1)
+        // if (SceneManager.GetActiveScene().buildIndex == 1 && Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1)
+        if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1 && TutorialManager.isTutorial1)
+        {
+            TutorialManager.isTutorial1 = false;
+            TutorialManager.Instance.StepCompleted();
+            TutorialRune.SetActive(true);
+            TutorialManager.isTutorial2 = true;
+        }
 
         // Changes the height position of the player..
         if (playerinput.Playercinem.Jump.triggered && groundedPlayer)

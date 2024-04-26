@@ -10,6 +10,11 @@ public class ActivateRune : MonoBehaviour
         Destroy(gameObject);
 
         if (TutorialManager.isTutorial2) // To use only on tutorial scene
+        {
+
             TutorialManager.Instance.StepCompleted();
+            TutorialManager.isTutorial2 = false;
+            TutorialManager.isTutorial3 = true;
+        }
     }
 }

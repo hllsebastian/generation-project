@@ -60,6 +60,9 @@ public class LaunchRunePower : MonoBehaviour
         timerIsActive = true;
         UIRuneCollection.StartTimer(timeLimit, onTimerComplete);
         Destroy(launchedPower, 2.0f);
+
+        if (TutorialManager.isTutorial3) // Display only on tutorial scene
+            TutorialManager.Instance.StepCompleted();
     }
 
     private void onTimerComplete()

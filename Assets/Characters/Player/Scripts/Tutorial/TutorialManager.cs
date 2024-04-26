@@ -1,8 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 
 public class TutorialManager : MonoBehaviour
@@ -13,6 +9,8 @@ public class TutorialManager : MonoBehaviour
     public static bool isTutorial1 = true;
     public static bool isTutorial2;
     public static bool isTutorial3;
+    public static bool isTutorial4;
+    public static bool isTutorial5;
 
     public static TutorialManager Instance { get; set; }
 
@@ -29,7 +27,7 @@ public class TutorialManager : MonoBehaviour
 
     void ShowCurrentStep()
     {
-        Debug.Log("INDEX:" + currentStepIndex);
+        Debug.Log("second INDEX:" + currentStepIndex);
         foreach (GameObject panel in tutorialPanels)
         {
             panel.SetActive(false);
@@ -38,10 +36,11 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialPanels[currentStepIndex].SetActive(true);
         }
-        else
+        if (currentStepIndex == 3)
         {
-            Debug.Log("Tutorial completado");
+            tutorialPanels[4].SetActive(true);
         }
+
     }
 
     public void StepCompleted()
@@ -51,41 +50,3 @@ public class TutorialManager : MonoBehaviour
         Debug.Log("NEXT STEP");
     }
 }
-
-
-// public class TutorialManager : MonoBehaviour
-// {
-//     public TutorialStep[] steps;
-//     [SerializeField] public TextMeshProUGUI stepText;
-//     private int currentStepIndex = 0;
-
-//     void Start()
-//     {
-//         ShowCurrentStep();
-//     }
-
-//     void ShowCurrentStep()
-//     {
-//         if (currentStepIndex < steps.Length)
-//         {
-//             stepText.text = steps[currentStepIndex].stepText;
-//             steps[currentStepIndex].stepRequired.action.Enable();
-//             steps[currentStepIndex].stepRequired.action.performed += HandleActionPerformed;
-//         }
-//         else
-//         {
-//             stepText.text = "Tutorial Completed";
-//         }
-//     }
-
-//     private void HandleActionPerformed(InputAction.CallbackContext context)
-//     {
-//         if (steps[currentStepIndex].isStepCompleted(context.action))
-//         {
-//             context.action.performed -= HandleActionPerformed;
-//             context.action.Disable();
-//             currentStepIndex++;
-//             ShowCurrentStep();
-//         }
-//     }
-// }
