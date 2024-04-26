@@ -93,7 +93,7 @@ public class BasedeDatos : MonoBehaviour
         Debug.Log(transform.position);
 Dictionary<string, object> user = new Dictionary<string, object>
 {
-        { "x", transform.position.x },
+        { "x", transform.position.x-1.31 },
         { "y", transform.position.y },
         { "z", transform.position.z },
         { "scene", SceneManager.GetActiveScene().buildIndex },
@@ -136,7 +136,7 @@ controlador.enabled = true;
     }
     private IEnumerator ReadDataCoroutine()
 {
-  load.enabled = true;
+  //load.enabled = true;
 
     PlayerController controlador = Player.GetComponent<PlayerController>();
     controlador.enabled = false;
@@ -171,7 +171,7 @@ controlador.enabled = true;
     }
   yield return new WaitForSeconds(2);
     controlador.enabled = true;
-    load.enabled = true;
+   // load.enabled = true;
 }
 
     void AuthStateChanged(object sender, System.EventArgs eventArgs) {
