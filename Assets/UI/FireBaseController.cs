@@ -108,10 +108,10 @@ public class FireBaseController : MonoBehaviour
         DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
 Dictionary<string, object> user = new Dictionary<string, object>
 {
-        { "x", 0 },
-        { "y", 0 },
-        { "z", 0 },
-        { "scene", 0 },
+        { "x", -1.823 },
+        { "y", -1.31 },
+        { "z", -113.26 },
+        { "scene", 1 },
 };
 docRef.SetAsync(user).ContinueWithOnMainThread(task => {
         Debug.Log("Added data to the alovelace document in the users collection.");

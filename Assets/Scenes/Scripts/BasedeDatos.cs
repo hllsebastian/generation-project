@@ -38,22 +38,23 @@ public class BasedeDatos : MonoBehaviour
 
 }
     void Start() {
-     //PlayerPrefs.SetInt("PrimeraCarga", 0); //usado para probar el juego 
-       int primeraCarga = PlayerPrefs.GetInt("PrimeraCarga");
-
-    // Imprime el valor en la consola
-    Debug.Log("Valor de PrimeraCarga: " + primeraCarga);
-      // Comprueba si es la primera vez que se carga la escena
-    if (PlayerPrefs.GetInt("PrimeraCarga") != SceneManager.GetActiveScene().buildIndex-1)
-    {
-        StartCoroutine(ReadDataCoroutine());
-    }
+     
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
   var dependencyStatus = task.Result;
   if (dependencyStatus == Firebase.DependencyStatus.Available) {
     // Create and hold a reference to your FirebaseApp,
     // where app is a Firebase.FirebaseApp property of your application class.
        InitializeFirebase();
+       //PlayerPrefs.SetInt("PrimeraCarga", 0); //usado para probar el juego 
+       int primeraCarga = PlayerPrefs.GetInt("PrimeraCarga");
+
+    // Imprime el valor en la consola
+    Debug.Log("Valor de PrimeraCarga: " + primeraCarga);
+      // Comprueba si no es la primera vez que se carga la escena
+    if (PlayerPrefs.GetInt("PrimeraCarga") != SceneManager.GetActiveScene().buildIndex-1)
+    {
+        StartCoroutine(ReadDataCoroutine());
+    }
 
     // Set a flag here to indicate whether Firebase is ready to use by your app.
   } else {
@@ -62,6 +63,7 @@ public class BasedeDatos : MonoBehaviour
     // Firebase Unity SDK is not safe to use here.
   }
 });
+
     }
         void InitializeFirebase() {
   auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
@@ -138,7 +140,7 @@ controlador.enabled = true;
 
     Task<DocumentSnapshot> task = docRef.GetSnapshotAsync();
     yield return new WaitUntil(() => task.IsCompleted);
-    
+    //yield return new WaitForSeconds(2);
     if (task.Result.Exists)
     {
         Debug.Log(String.Format("Document data for {0} document:", task.Result.Id));
