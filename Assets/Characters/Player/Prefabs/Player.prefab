@@ -53,6 +53,8 @@ MonoBehaviour:
   jumpHeight: 1
   playerSpeed: 5
   speed: 0
+  attackDamage: 0
+  health: 0
 --- !u!143 &2990129044503969920
 CharacterController:
   m_ObjectHideFlags: 0
@@ -70,7 +72,7 @@ CharacterController:
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
-  m_Center: {x: 2.14, y: 0.93, z: -0.79}
+    m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!54 &597809290
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -87,6 +89,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!1 &2990129044625833494
 GameObject:
   m_ObjectHideFlags: 0

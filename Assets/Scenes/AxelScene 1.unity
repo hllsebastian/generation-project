@@ -1905,8 +1905,8 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2990129044503969921, guid: 07dfe4ce31112844e895e0abe50bdce0, type: 3}
-      propertyPath: playerSpeed
-      value: 5
+      propertyPath: rotationSpeed
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2990129044503969921, guid: 07dfe4ce31112844e895e0abe50bdce0, type: 3}
       propertyPath: rotationSpeed

@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
+        transform.GetChild(0).position = controller.transform.position;
     }
 
     private void Move()
@@ -80,7 +81,7 @@ public class PlayerController : MonoBehaviour
         {
             Quaternion rotation = Quaternion.Euler(new Vector3 (child.localEulerAngles.x,CameraMain.localEulerAngles.y,child.localEulerAngles.z));
             child.rotation = Quaternion.Lerp(child.rotation , rotation ,  Time.deltaTime* rotationSpeed  );
-            Walk();
+         Walk();
         }
         else{
             anim.SetFloat("Speed", 0f);
