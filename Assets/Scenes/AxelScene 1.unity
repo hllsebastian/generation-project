@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5459658, g: 0.6233132, b: 0.6086869, a: 1}
+  m_IndirectSpecularColor: {r: 0.5459652, g: 0.6233126, b: 0.60868573, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -642,7 +642,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471036885}
-  m_LocalRotation: {x: 0.27778378, y: 3.27307e-15, z: -1.0855942e-15, w: 0.96064365}
+  m_LocalRotation: {x: 0.27778378, y: 1.636535e-15, z: -9.870789e-17, w: 0.96064365}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1240,7 +1240,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867393654}
-  m_LocalRotation: {x: 0.120986916, y: -0.000000034951427, z: 0.000000004259958, w: 0.99265414}
+  m_LocalRotation: {x: 0.120986916, y: 0.000000034951427, z: -0.000000004259958, w: 0.99265414}
   m_LocalPosition: {x: -1.823, y: 0.73099995, z: -114.9396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1429,7 +1429,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158133452}
-  m_LocalRotation: {x: 0.120986894, y: -0.000000017079984, z: 0.0000000020817463, w: 0.99265414}
+  m_LocalRotation: {x: 0.120986894, y: 0.000000017079984, z: -0.0000000020817463, w: 0.99265414}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2006,6 +2006,10 @@ PrefabInstance:
     - target: {fileID: 6212553083672278116, guid: 79778b1889240f04fa93251392d7925a, type: 3}
       propertyPath: m_Name
       value: Save_point
+      objectReference: {fileID: 0}
+    - target: {fileID: 6212553083672278116, guid: 79778b1889240f04fa93251392d7925a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6212553083672373316, guid: 79778b1889240f04fa93251392d7925a, type: 3}
       propertyPath: m_RootOrder

@@ -39,17 +39,17 @@ public class LaunchRunePower : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Fire"))
-        {
-            isInvisibleLayer = false;
-            // isFireLayer = true;
-        }
-        if (other.gameObject.layer == LayerMask.NameToLayer("Default"))
-        {
-            Debug.Log("Invisible Layer");
-            // isFireLayer = false;
-            isInvisibleLayer = true;
-        }
+        // if (other.gameObject.layer == LayerMask.NameToLayer("Fire"))
+        // {
+        //     isInvisibleLayer = false;
+        //     // isFireLayer = true;
+        // }
+        // if (other.gameObject.layer == LayerMask.NameToLayer("Default"))
+        // {
+        //     Debug.Log("Invisible Layer");
+        //     // isFireLayer = false;
+        //     isInvisibleLayer = true;
+        // }
     }
 
     private void LaunchPower()
@@ -61,8 +61,8 @@ public class LaunchRunePower : MonoBehaviour
         UIRuneCollection.StartTimer(timeLimit, onTimerComplete);
         Destroy(launchedPower, 2.0f);
 
-        if (TutorialManager.isTutorial3) // Display only on tutorial scene
-            TutorialManager.Instance.StepCompleted();
+        // if (TutorialManager.isStep3) // Display only on tutorial scene
+        //     TutorialManager.Instance.StepCompleted();
     }
 
     private void onTimerComplete()

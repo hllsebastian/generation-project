@@ -80,7 +80,6 @@ public class UIRuneCollection : MonoBehaviour
 
     private void UITimer()
     {
-        Debug.Log("Current Time:" + currentTime);
         currentTime -= Time.deltaTime;
         if (currentTime >= 0)
         {

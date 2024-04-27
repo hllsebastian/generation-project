@@ -25556,6 +25556,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Save_point Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 6212553083672278116, guid: 79778b1889240f04fa93251392d7925a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6212553083672373316, guid: 79778b1889240f04fa93251392d7925a, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -39593,7 +39597,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1232437022}
-  m_LocalRotation: {x: 0.26610705, y: -1.2809849e-16, z: -5.7223964e-17, w: 0.9639435}
+  m_LocalRotation: {x: 0.26610708, y: -0.000000028727756, z: 0.000000007930609, w: 0.9639435}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -59805,7 +59809,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1929235054}
-  m_LocalRotation: {x: 0.321045, y: 1e-45, z: -0, w: 0.947064}
+  m_LocalRotation: {x: 0.321045, y: -3e-45, z: 1e-45, w: 0.947064}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

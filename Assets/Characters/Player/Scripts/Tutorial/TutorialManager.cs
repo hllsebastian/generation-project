@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class TutorialManager : MonoBehaviour
 {
-    [SerializeField] public GameObject[] tutorialPanels;
+    [SerializeField] public GameObject[] tutorialSteps;
     private int currentStepIndex = 0;
 
-    public static bool isTutorial1 = true;
-    public static bool isTutorial2;
-    public static bool isTutorial3;
-    public static bool isTutorial4;
-    public static bool isTutorial5;
+    public static bool isStep1 = true;
+    public static bool isStep2;
+    public static bool isStep3;
+    public static bool isStep4;
+    public static bool isStep5;
 
     public static TutorialManager Instance { get; set; }
 
@@ -27,18 +27,13 @@ public class TutorialManager : MonoBehaviour
 
     void ShowCurrentStep()
     {
-        Debug.Log("second INDEX:" + currentStepIndex);
-        foreach (GameObject panel in tutorialPanels)
+        foreach (GameObject panel in tutorialSteps)
         {
             panel.SetActive(false);
         }
-        if (currentStepIndex < tutorialPanels.Length)
+        if (currentStepIndex < tutorialSteps.Length)
         {
-            tutorialPanels[currentStepIndex].SetActive(true);
-        }
-        if (currentStepIndex == 3)
-        {
-            tutorialPanels[4].SetActive(true);
+            tutorialSteps[currentStepIndex].SetActive(true);
         }
 
     }

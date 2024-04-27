@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
@@ -11,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private bool groundedPlayer;
     private Transform CameraMain;
     [SerializeField] private float backSpeed, rotationSpeed, gravityValue, jumpHeight, playerSpeed, speed;
-    [SerializeField] private GameObject TutorialRune;
+    [SerializeField] private GameObject[] TutorialObject;
     private PlayerCam playerinput;
     private Transform child;
     private Animator anim;
@@ -72,14 +73,12 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         // To display only on tutorial scene
-        // if (SceneManager.GetActiveScene().buildIndex == 1)
-        // if (SceneManager.GetActiveScene().buildIndex == 1 && Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1)
-        if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1 && TutorialManager.isTutorial1)
+        if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1 && TutorialManager.isStep1)
         {
-            TutorialManager.isTutorial1 = false;
+            TutorialManager.isStep1 = false;
             TutorialManager.Instance.StepCompleted();
-            TutorialRune.SetActive(true);
-            TutorialManager.isTutorial2 = true;
+            TutorialObject[0].gameObject.SetActive(true);
+            TutorialManager.isStep2 = true;
         }
 
         // Changes the height position of the player..
@@ -150,6 +149,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        Debug.Log("Display step 5");
         if (other.gameObject.CompareTag("Enemy") && !hasHit)
         {
             Debug.Log("Damage to: " + other.gameObject.name);
@@ -157,6 +157,14 @@ public class PlayerController : MonoBehaviour
             hasHit = true;
         }
 
+        // Only to use on Tutorial Scene
+        if (TutorialManager.isStep4 && other.gameObject.CompareTag("Save_point"))
+        {
+            Debug.Log("Display step 5");
+            TutorialManager.Instance.StepCompleted();
+            TutorialManager.isStep4 = false;
+            TutorialManager.isStep5 = true;
+            TutorialObject[1].gameObject.SetActive(true);
+        }
     }
-
 }
