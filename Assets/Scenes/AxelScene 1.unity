@@ -374,6 +374,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 30503888}
   m_CullTransparentMesh: 1
+--- !u!1 &115423235 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6212553083672278116, guid: 79778b1889240f04fa93251392d7925a, type: 3}
+  m_PrefabInstance: {fileID: 5171186892778523519}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &115423240
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 115423235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb86fc40d8c8f45408ca2c104388ccfa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  Archivo: 
+  persistencia:
+    posicion: {x: 0, y: 0, z: 0}
 --- !u!1 &171455214
 GameObject:
   m_ObjectHideFlags: 0
@@ -506,7 +527,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 171455214}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.823, y: 0.73099995, z: -118.020004}
+  m_LocalPosition: {x: -1.823, y: 0.73099995, z: -117.608}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1168,7 +1189,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 471036885}
-  m_LocalRotation: {x: 0.2777838, y: -0.000000028629412, z: 0.000000008278603, w: 0.96064365}
+  m_LocalRotation: {x: 0.23238656, y: 0.000000008367666, z: -0.0000000019992659, w: 0.9726235}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2037,7 +2058,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 867393654}
-  m_LocalRotation: {x: 0.120986916, y: 0.000000034951427, z: -0.000000004259958, w: 0.99265414}
+  m_LocalRotation: {x: 0.09286719, y: 0, z: 0, w: 0.99567854}
   m_LocalPosition: {x: -1.823, y: 0.73099995, z: -114.9396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2162,7 +2183,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 904115672}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 115423240}
+        m_TargetAssemblyTypeName: SavesinBase, Assembly-CSharp
+        m_MethodName: Load
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 1
 --- !u!114 &904115672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2270,7 +2303,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153849729}
-  m_LocalRotation: {x: 0.22213717, y: 0.0000000038540584, z: -8.7806723e-10, w: 0.97501546}
+  m_LocalRotation: {x: 0.1761267, y: -0, z: -0, w: 0.9843675}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2348,7 +2381,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158133452}
-  m_LocalRotation: {x: 0.120986894, y: 0.000000017079984, z: -0.0000000020817463, w: 0.99265414}
+  m_LocalRotation: {x: 0.09286719, y: -1e-45, z: -0, w: 0.99567854}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2706,6 +2739,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pause: {fileID: 1618793278}
   buttpause: {fileID: 810403465}
+  login: {fileID: 0}
+  Save: {fileID: 0}
 --- !u!1 &1520624861
 GameObject:
   m_ObjectHideFlags: 0
@@ -2820,8 +2855,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 84.64502, y: 244.998}
-  m_SizeDelta: {x: 1900.71, y: -706.526}
+  m_AnchoredPosition: {x: 84.64502, y: 418}
+  m_SizeDelta: {x: 1900.71, y: -837.9413}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1618793280
 MonoBehaviour:
@@ -3108,7 +3143,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2990129044503969926, guid: 07dfe4ce31112844e895e0abe50bdce0, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -113.26
+      value: -112.848
       objectReference: {fileID: 0}
     - target: {fileID: 2990129044503969926, guid: 07dfe4ce31112844e895e0abe50bdce0, type: 3}
       propertyPath: m_LocalRotation.w

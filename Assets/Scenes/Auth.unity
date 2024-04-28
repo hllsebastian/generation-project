@@ -655,6 +655,8 @@ MonoBehaviour:
   buttpause: {fileID: 0}
   login: {fileID: 84578160}
   Save: {fileID: 613742443}
+  botonNew: {fileID: 848451731}
+  botonSave: {fileID: 684445998}
 --- !u!1 &299223852
 GameObject:
   m_ObjectHideFlags: 0
@@ -1880,7 +1882,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 684445999}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 272047579}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: btsave
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &684445999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2243,7 +2257,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 848451732}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 272047579}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: btnew
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &848451732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3244,9 +3270,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: FireBaseController, Assembly-CSharp
-        m_MethodName: Oplog
+      - m_Target: {fileID: 272047579}
+        m_TargetAssemblyTypeName: MenuController, Assembly-CSharp
+        m_MethodName: play
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

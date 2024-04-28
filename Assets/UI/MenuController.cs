@@ -8,6 +8,8 @@ using UnityEngine.SceneManagement;
 public class MenuController : MonoBehaviour
 {
     public GameObject pause,buttpause,login,Save;
+    public Button botonNew,botonSave;
+    private bool save,neww;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,18 +40,47 @@ public class MenuController : MonoBehaviour
         Save.SetActive(true);
      }
      public void log(){
-      /*  int primerjuego = PlayerPrefs.GetInt("PrimerJuego");
+        int primerjuego = PlayerPrefs.GetInt("PrimerJuego");
         if(PlayerPrefs.GetInt("PrimerJuego")==0){
             SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1);
 
         }else{
             opSave();
-        }*/
+        }
         opSave();
      }
     public void back(){
         oplogin();
     }
+    public void play(){
+        if(save){
+            // SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1); //toca que guarde la escena aun no implementado
+            SavesinBase savesinBase =new SavesinBase ();
+            savesinBase.Load();
+
+        }else if(neww){
+            //que borre la info del .json aun no implementado
+        }
+    }
+    public void btsave(){
+
+    botonSave.image.color = Color.green;
+    botonNew.image.color = Color.white;
+    save=true;
+    neww=false;
+
+
+    }
+     public void btnew(){
+
+    botonNew.image.color = Color.green;
+    botonSave.image.color = Color.white;
+    save=false;
+    neww=true;
+
+    }
+
+
 
 
 

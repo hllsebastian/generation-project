@@ -4,21 +4,28 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using System.IO;
 using System;
+using UnityEngine.UI;
 
 public class SavesinBase : MonoBehaviour
 {
     public GameObject Player;
     public string Archivo;
+  
+
 
     public Persistencia persistencia= new Persistencia();
     private void Awake() {
         Player=GameObject.FindGameObjectWithTag("Player");
-        Archivo= Application.dataPath + "/datosJuego";
+        Archivo = Path.Combine(Application.persistentDataPath, "datosJuego");
+
 
       
 
     }
     // Start is called before the first frame update
+    public void Load(){
+        StartCoroutine(Cargar());
+    }
     void Start()
     {
         
@@ -56,7 +63,7 @@ public class SavesinBase : MonoBehaviour
      
 
     }
-    private IEnumerator Cargar(){
+    public IEnumerator Cargar(){
          PlayerController controlador = Player.GetComponent<PlayerController>();
     controlador.enabled = false;
          if (File.Exists(Archivo)){
@@ -71,5 +78,7 @@ public class SavesinBase : MonoBehaviour
          yield return new WaitForSeconds(2);
          controlador.enabled = true;
     }
+
+    
 
 }
