@@ -1,13 +1,10 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using JetBrains.Annotations;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
     public static AudioManager instance;
-    public Sound[] sounds;
+    [SerializeField] Sound[] sounds;
     public float effectsVolume = 1.0f;
     public float musicVolume = 1.0f;
 
@@ -16,7 +13,7 @@ public class AudioManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            // DontDestroyOnLoad(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
         else if (instance != this)
         {
@@ -31,7 +28,11 @@ public class AudioManager : MonoBehaviour
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
         }
-        Debug.Log(sounds);
+    }
+
+    private void Start()
+    {
+        PlayMusic("Sample1");
     }
 
     public void PlayMusic(string name)

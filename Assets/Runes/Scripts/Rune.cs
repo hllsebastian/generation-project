@@ -8,7 +8,8 @@ public class Rune : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //Destroy(gameObject);
+        // UIRuneCollection.Instance.AddRune(effects); // TODO: to display rune on UI     
+        Destroy(gameObject);
         this.gameObject.GetComponent<MeshRenderer>().enabled = false;
         this.gameObject.GetComponent<Collider>().enabled = false;
         effects.Apply(other.gameObject);
