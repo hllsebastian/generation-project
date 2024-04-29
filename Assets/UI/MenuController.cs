@@ -42,7 +42,7 @@ public class MenuController : MonoBehaviour
         login.SetActive(false);
         Save.SetActive(true);
      }
-        public void BacktoLogin(){
+    public void BacktoLogin(){
          SceneManager.LoadScene(0);
      }
      public void log(){
