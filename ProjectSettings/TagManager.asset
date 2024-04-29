@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FireGround
+  - InvisibleGround
+  - Save_point
+  - Enemy
+  - load
   layers:
   - Default
   - TransparentFX
@@ -11,6 +16,7 @@ TagManager:
   - 
   - Water
   - UI
+  - Fire
   - 
   - 
   - 
@@ -20,10 +26,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
+  - PlayerLayer
+  - Ground
+  - Obstacle
   - 
   - 
   - 
