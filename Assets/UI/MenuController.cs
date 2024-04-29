@@ -13,7 +13,8 @@ public class MenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Save.SetActive(false);
+        login.SetActive(true);
     }
 
     // Update is called once per frame
@@ -38,6 +39,9 @@ public class MenuController : MonoBehaviour
      public void opSave(){
         login.SetActive(false);
         Save.SetActive(true);
+     }
+        public void BacktoLogin(){
+         SceneManager.LoadScene(0);
      }
      public void log(){
         int primerjuego = PlayerPrefs.GetInt("PrimerJuego");
