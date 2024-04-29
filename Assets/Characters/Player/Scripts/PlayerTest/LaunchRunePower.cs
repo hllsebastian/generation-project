@@ -19,7 +19,7 @@ public class LaunchRunePower : MonoBehaviour
     private void Awake()
     {
         playerCam = new PlayerCam();
-        playerCam.Playercinem.Action.performed += OnClick;
+        //playerCam.Playercinem.Action.performed += OnClick;
         // uiInput = new InputsUI();
         // uiInput.Buttons.LeftClick.performed += OnClick;
     }
@@ -52,7 +52,7 @@ public class LaunchRunePower : MonoBehaviour
         // }
     }
 
-    private void LaunchPower()
+    public void LaunchPower()
     {
         Debug.Log("FIREEE");
         AudioManager.instance.PlaySoundEffect("SFX1");
