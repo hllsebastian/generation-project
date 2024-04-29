@@ -149,7 +149,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Display step 5");
         if (other.gameObject.CompareTag("Enemy") && !hasHit)
         {
             Debug.Log("Damage to: " + other.gameObject.name);
