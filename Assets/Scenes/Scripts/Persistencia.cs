@@ -5,5 +5,6 @@ using UnityEngine;
 public class Persistencia 
 {
     public Vector3 posicion;
+    public int escena;
     
 }

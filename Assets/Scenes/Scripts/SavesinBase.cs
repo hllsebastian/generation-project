@@ -28,7 +28,10 @@ public class SavesinBase : MonoBehaviour
     }
     void Start()
     {
-        
+        if (PlayerPrefs.GetInt("PrimerJuego") != SceneManager.GetActiveScene().buildIndex-1 &&SceneManager.GetActiveScene().buildIndex!=0 )
+    {
+        StartCoroutine(Cargar());
+    }
     }
 
     // Update is called once per frame
@@ -49,7 +52,8 @@ public class SavesinBase : MonoBehaviour
         PlayerPrefs.SetInt("PrimerJuego",SceneManager.GetActiveScene().buildIndex);  //actualiza que no es la primera vez que entra en escena
 
         Persistencia nuevos= new Persistencia(){
-            posicion=Player.transform.position
+            posicion=Player.transform.position,
+            escena= SceneManager.GetActiveScene().buildIndex
         };
         string cadenaJson=JsonUtility.ToJson(nuevos);
         File.WriteAllText(Archivo, cadenaJson);
@@ -64,19 +68,50 @@ public class SavesinBase : MonoBehaviour
 
     }
     public IEnumerator Cargar(){
-         PlayerController controlador = Player.GetComponent<PlayerController>();
-    controlador.enabled = false;
+        if(SceneManager.GetActiveScene().buildIndex!=0){
+            PlayerController controlador = Player.GetComponent<PlayerController>();
+         controlador.enabled = false;
          if (File.Exists(Archivo)){
             string contenido=File.ReadAllText(Archivo);
             persistencia=JsonUtility.FromJson<Persistencia>(contenido);
+            if(persistencia.escena!=SceneManager.GetActiveScene().buildIndex){
+                SceneManager.LoadScene(persistencia.escena);
+            }
+            
+            //yield return new WaitForSeconds(0.2f);
+             Debug.Log("posicion del jugador"+ persistencia.escena);
             Debug.Log("posicion del jugador"+ persistencia.posicion);
+           
             Player.transform.position=persistencia.posicion;
+            
 
          }else{
             Debug.Log("El archivo no existe");
          }
          yield return new WaitForSeconds(2);
          controlador.enabled = true;
+        }else{
+        
+         if (File.Exists(Archivo)){
+            string contenido=File.ReadAllText(Archivo);
+            persistencia=JsonUtility.FromJson<Persistencia>(contenido);
+            if(persistencia.escena!=SceneManager.GetActiveScene().buildIndex){
+                SceneManager.LoadScene(persistencia.escena);
+            }
+            
+            //yield return new WaitForSeconds(0.2f);
+             Debug.Log("posicion del jugador"+ persistencia.escena);
+            Debug.Log("posicion del jugador"+ persistencia.posicion);
+           
+            Player.transform.position=persistencia.posicion;
+            
+
+         }else{
+            Debug.Log("El archivo no existe");
+         }
+         yield return new WaitForSeconds(2);
+        }
+         
     }
 
     

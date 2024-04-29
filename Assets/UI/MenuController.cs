@@ -47,19 +47,22 @@ public class MenuController : MonoBehaviour
         }else{
             opSave();
         }
-        opSave();
      }
     public void back(){
         oplogin();
     }
     public void play(){
         if(save){
-            // SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1); //toca que guarde la escena aun no implementado
-            SavesinBase savesinBase =new SavesinBase ();
+             
+            SavesinBase savesinBase = gameObject.AddComponent<SavesinBase>();
+
             savesinBase.Load();
 
         }else if(neww){
             //que borre la info del .json aun no implementado
+            PlayerPrefs.DeleteAll();
+            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1);
+
         }
     }
     public void btsave(){
