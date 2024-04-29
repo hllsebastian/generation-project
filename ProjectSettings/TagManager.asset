@@ -23,9 +23,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - PlayerLayer
+  - Ground
+  - Obstacle
   - 
   - 
   - 

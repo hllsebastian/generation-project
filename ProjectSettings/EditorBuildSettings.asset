@@ -4,8 +4,5 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/AxelScene 1.unity
-    guid: 4bdd22c5d52127443b2d7e74b92270cd
+  m_Scenes: []
   m_configObjects: {}
