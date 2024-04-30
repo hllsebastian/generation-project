@@ -25,6 +25,7 @@ public class EnemyManager : MonoBehaviour
     [Header("Layers")]
     [SerializeField] LayerMask groundLayer;
     [SerializeField] LayerMask playerLayer;
+    [SerializeField] LayerMask obstacleLayer;
 
 
     private void Awake()
@@ -70,8 +71,10 @@ public class EnemyManager : MonoBehaviour
 
         destinationPoint = new Vector3(transform.position.x + destinationX, transform.position.y, transform.position.z + destinationZ);
 
-        if(Physics.Raycast(destinationPoint, -transform.up, 2f, groundLayer))
+        if(Physics.Raycast(destinationPoint, -transform.up, 2f, groundLayer) && !Physics.Raycast(destinationPoint, -transform.up, 2f, obstacleLayer))
             destinationPointSet = true;
+        else
+            destinationPointSet = false;
     }
     private void EnemyChasing()
     {
@@ -113,5 +116,7 @@ public class EnemyManager : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, visionRange);
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(destinationPoint, 0.5f);
     }
 }
