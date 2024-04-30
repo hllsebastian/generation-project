@@ -94,7 +94,7 @@ public class PlayerController : MonoBehaviour
         {
             Quaternion rotation = Quaternion.Euler(new Vector3(child.localEulerAngles.x, CameraMain.localEulerAngles.y, child.localEulerAngles.z));
             child.rotation = Quaternion.Lerp(child.rotation, rotation, Time.deltaTime * rotationSpeed);
-            Walk();
+            Walk(moveinput);
         }
         else
         {
@@ -104,13 +104,28 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void Walk()
+    private void Walk(Vector2 moveinput)
     {
-
-        speed = playerSpeed;
-        anim.SetBool("Moving", true);
-        anim.SetFloat("Speed", 1.0f);
-
+        if(moveinput.y > 0){
+            speed = playerSpeed;
+            anim.SetBool("Moving", true);
+            anim.SetFloat("Forward", 1.0f);
+        }
+        if(moveinput.y < 0){
+            speed = backSpeed;
+            anim.SetBool("Moving", true);
+            anim.SetFloat("Forward", -1.0f);
+        }
+        if(moveinput.x > 0){
+            speed = playerSpeed;
+            anim.SetFloat("Side", 1.0f);
+            anim.SetBool("Moving", true);
+        }
+        if(moveinput.x < 0){
+            speed = playerSpeed;
+            anim.SetFloat("Side", -1.0f);
+            anim.SetBool("Moving", true);
+        }
     }
     private void Jump()
     {

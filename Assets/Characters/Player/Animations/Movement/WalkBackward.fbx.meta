@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 7d569195caea6364689fa56fa5f0e7c5
+guid: 8d55f6f9b242d5b41bfa11d806d6e5be
 ModelImporter:
   serializedVersion: 19301
   internalIDToNameTable:
@@ -7,8 +7,8 @@ ModelImporter:
       74: 416870459326255563
     second: tpose
   - first:
-      74: -6337207191384161919
-    second: WalkForward
+      74: 7402836860979311914
+    second: WalkBackward
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -67,8 +67,8 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: WalkForward
-      takeName: WalkForward
+      name: WalkBackward
+      takeName: WalkBackward
       internalID: 0
       firstFrame: 2
       lastFrame: 34
@@ -578,13 +578,13 @@ ModelImporter:
         length: 0
         modified: 0
     skeleton:
-    - name: WalkForward(Clone)
+    - name: WalkBackward(Clone)
       parentName: 
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Armature
-      parentName: WalkForward(Clone)
+      parentName: WalkBackward(Clone)
       position: {x: -0, y: 0, z: 0}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
@@ -775,12 +775,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: jnt_shoulder_R
       parentName: Scapula_R
-      position: {x: -0.12850574, y: -0.016258905, z: 0.04279993}
+      position: {x: -0.13639264, y: 0.010560722, z: 0.09073197}
       rotation: {x: 0.6558028, y: 0.46923745, z: -0.30153418, w: 0.5087397}
       scale: {x: 1, y: 1, z: 1}
     - name: jnt_shoulderEnd_R
       parentName: jnt_shoulder_R
-      position: {x: -0.09760509, y: -2.842171e-16, z: 7.8870245e-15}
+      position: {x: -0.09760509, y: -7.105427e-17, z: 7.744916e-15}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Scapula_L
@@ -905,12 +905,12 @@ ModelImporter:
       scale: {x: 1, y: 1, z: 1}
     - name: jnt_shoulder_L
       parentName: Scapula_L
-      position: {x: 0.12850574, y: 0.016258905, z: -0.04279993}
+      position: {x: 0.13639264, y: -0.010560722, z: -0.09073197}
       rotation: {x: 0.6558028, y: 0.46923745, z: -0.30153418, w: 0.5087397}
       scale: {x: 1, y: 1, z: 1}
     - name: jnt_shoulderEnd_L
       parentName: jnt_shoulder_L
-      position: {x: 0.09760509, y: 7.105427e-17, z: -8.419931e-15}
+      position: {x: 0.09760509, y: 2.842171e-16, z: -8.5975665e-15}
       rotation: {x: 0, y: -0, z: -0, w: 1}
       scale: {x: 1, y: 1, z: 1}
     - name: Hip_R
