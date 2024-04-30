@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Firebase.Firestore;
+//using Firebase.Firestore;
 using Firebase.Extensions;
 using System;
 using UnityEngine.SceneManagement;
@@ -87,7 +87,7 @@ public class BasedeDatos : MonoBehaviour
     }
   
     private void UpdateData(){
-        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+      /*  FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
         Debug.Log(Player.transform.position);
         Debug.Log(transform.position);
@@ -101,11 +101,11 @@ Dictionary<string, object> user = new Dictionary<string, object>
 };
 docRef.UpdateAsync(user).ContinueWithOnMainThread(task => {
         Debug.Log("Added data to the alovelace document in the users collection."+auth.CurrentUser.UserId);
-});
+});*/
     }
 
     private void ReadData(){
-      PlayerController controlador = Player.GetComponent<PlayerController>();
+    /*  PlayerController controlador = Player.GetComponent<PlayerController>();
         controlador.enabled = false;
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
@@ -132,13 +132,13 @@ Debug.Log("x"+ Convert.ToSingle(user["x"]) +"y "+Convert.ToSingle(user["y"])+"z 
   
 });
 
-controlador.enabled = true;
+controlador.enabled = true;*/
     }
     private IEnumerator ReadDataCoroutine()
 {
   //load.enabled = true;
 
-    PlayerController controlador = Player.GetComponent<PlayerController>();
+    /*PlayerController controlador = Player.GetComponent<PlayerController>();
     controlador.enabled = false;
 
     FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
@@ -171,7 +171,8 @@ controlador.enabled = true;
     }
   yield return new WaitForSeconds(2);
     controlador.enabled = true;
-   // load.enabled = true;
+   // load.enabled = true;*/
+   yield return new WaitForSeconds(2);
 }
 
     void AuthStateChanged(object sender, System.EventArgs eventArgs) {

@@ -9,7 +9,7 @@ using Firebase.Auth;
 using System;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
-using Firebase.Firestore;
+//using Firebase.Firestore;
 public class FireBaseController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -17,6 +17,8 @@ public class FireBaseController : MonoBehaviour
     public TMP_InputField Logemail,logpass,Sigpass,Sigemail,SigCpass,Siguser,Forgotpass;    
     public TMP_Text noti_title,noti_mesage,profUser,profEmail;
     public Toggle remember;
+    bool isSigneds=false;
+    private FirebaseApp _app;
     Firebase.Auth.FirebaseAuth auth;
     Firebase.Auth.FirebaseUser user;
 
@@ -35,7 +37,9 @@ public class FireBaseController : MonoBehaviour
   if (dependencyStatus == Firebase.DependencyStatus.Available) {
     // Create and hold a reference to your FirebaseApp,
     // where app is a Firebase.FirebaseApp property of your application class.
-      
+     Debug.Log("Hola");
+      _app = Firebase.FirebaseApp.DefaultInstance;
+
        InitializeFirebase();
         if (PlayerPrefs.GetInt("Recordar") == -1)
     {
@@ -119,7 +123,7 @@ public class FireBaseController : MonoBehaviour
         Oplog();
     }
     private void AddData(){
-      FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+      /*FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
 Dictionary<string, object> user = new Dictionary<string, object>
 {
@@ -130,7 +134,7 @@ Dictionary<string, object> user = new Dictionary<string, object>
 };
 docRef.SetAsync(user).ContinueWithOnMainThread(task => {
         Debug.Log("Added data to the alovelace document in the users collection.");
-});
+});*/
     }
     /*private void AddData(){
            FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
@@ -257,8 +261,9 @@ if (user != null) {
 }
 
 }
-bool isSigneds=false;
-private void Update() {
+
+
+    private void Update() {
     if(isSigned){
         if(!isSigneds){
             isSigneds=true;
