@@ -7,7 +7,6 @@ public class FireRunePower : MonoBehaviour
     static public bool isRuneFreezed;
     public void Use()
     {
-        Debug.Log("Lanzando proyectil!");
         AudioManager.instance.PlaySoundEffect("SFX1");
         GameObject launchedPower = Instantiate(powerPrefab, firePoint.transform.position, firePoint.transform.rotation);
         Destroy(launchedPower, 2.0f);

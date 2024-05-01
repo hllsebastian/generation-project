@@ -42,6 +42,5 @@ public class TutorialManager : MonoBehaviour
     {
         currentStepIndex++;
         ShowCurrentStep();
-        Debug.Log("NEXT STEP");
     }
 }

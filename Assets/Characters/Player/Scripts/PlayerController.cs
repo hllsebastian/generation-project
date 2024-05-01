@@ -13,7 +13,7 @@ public class PlayerController : MonoBehaviour
     private Transform CameraMain;
     [SerializeField] private float backSpeed, rotationSpeed, gravityValue, jumpHeight, speed;
     public float playerSpeed;
-    [SerializeField] private GameObject TutorialPortal;
+    [SerializeField] private GameObject[] TutorialObjects;
     private PlayerCam playerinput;
     private Transform child;
     private Animator anim;
@@ -75,11 +75,11 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         // To display only on tutorial scene
-        if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1 && TutorialManager.isStep1&& SceneManager.GetActiveScene().buildIndex==1)
+        if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1 && TutorialManager.isStep1 && SceneManager.GetActiveScene().buildIndex == 1)
         {
             TutorialManager.isStep1 = false;
             TutorialManager.Instance.StepCompleted();
-            // TutorialPortal.gameObject.SetActive(true);
+            TutorialObjects[0].SetActive(true);
             TutorialManager.isStep2 = true;
         }
 
@@ -161,11 +161,10 @@ public class PlayerController : MonoBehaviour
         // Only to use on Tutorial Scene
         if (TutorialManager.isStep4 && other.gameObject.CompareTag("Save_point"))
         {
-            Debug.Log("Display step 5");
             TutorialManager.Instance.StepCompleted();
             TutorialManager.isStep4 = false;
             TutorialManager.isStep5 = true;
-            TutorialPortal.gameObject.SetActive(true);
+            TutorialObjects[1].SetActive(true);
         }
     }
 }

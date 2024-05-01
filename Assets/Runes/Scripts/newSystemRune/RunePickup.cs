@@ -15,11 +15,10 @@ public class RunePickup : MonoBehaviour
 
         if (TutorialManager.isStep2) // To use only on tutorial scene
         {
-
             TutorialManager.Instance.StepCompleted();
             TutorialManager.isStep2 = false;
             TutorialManager.isStep3 = true;
-            // TutorialEnemy.SetActive(true);
+            TutorialEnemy.SetActive(true);
         }
     }
 }
