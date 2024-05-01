@@ -11,8 +11,9 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private Transform CameraMain;
-    [SerializeField] private float backSpeed, rotationSpeed, gravityValue, jumpHeight, playerSpeed, speed;
-    [SerializeField] private GameObject[] TutorialObject;
+    [SerializeField] private float backSpeed, rotationSpeed, gravityValue, jumpHeight, speed;
+    public float playerSpeed;
+    [SerializeField] private GameObject TutorialPortal;
     private PlayerCam playerinput;
     private Transform child;
     private Animator anim;
@@ -77,7 +78,7 @@ public class PlayerController : MonoBehaviour
         {
             TutorialManager.isStep1 = false;
             TutorialManager.Instance.StepCompleted();
-            TutorialObject[0].gameObject.SetActive(true);
+            // TutorialPortal.gameObject.SetActive(true);
             TutorialManager.isStep2 = true;
         }
 
@@ -164,7 +165,7 @@ public class PlayerController : MonoBehaviour
             TutorialManager.Instance.StepCompleted();
             TutorialManager.isStep4 = false;
             TutorialManager.isStep5 = true;
-            TutorialObject[1].gameObject.SetActive(true);
+            TutorialPortal.gameObject.SetActive(true);
         }
     }
 }
