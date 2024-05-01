@@ -9,7 +9,7 @@ using Firebase.Auth;
 using System;
 using System.Threading.Tasks;
 using UnityEngine.SceneManagement;
-//using Firebase.Firestore;
+using Firebase.Firestore;
 public class FireBaseController : MonoBehaviour
 {
     // Start is called before the first frame update
@@ -123,9 +123,9 @@ public class FireBaseController : MonoBehaviour
         Oplog();*/
     }
     private void AddData(){
-      /*FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
-        DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
-Dictionary<string, object> user = new Dictionary<string, object>
+      FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+      DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
+      Dictionary<string, object> user = new Dictionary<string, object>
 {
         { "x", -1.823 },
         { "y", -1.31 },
@@ -134,7 +134,7 @@ Dictionary<string, object> user = new Dictionary<string, object>
 };
 docRef.SetAsync(user).ContinueWithOnMainThread(task => {
         Debug.Log("Added data to the alovelace document in the users collection.");
-});*/
+});
     }
     /*private void AddData(){
            FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
