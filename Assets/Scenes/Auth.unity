@@ -528,6 +528,139 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1001 &57023386
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5810834082014047635, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_Name
+      value: FireBaseController
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810834082014047635, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: login
+      value: 
+      objectReference: {fileID: 270410348}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: Forgot
+      value: 
+      objectReference: {fileID: 1707966670}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: signup
+      value: 
+      objectReference: {fileID: 1782256094}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: Sigpass
+      value: 
+      objectReference: {fileID: 1254453661}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: Siguser
+      value: 
+      objectReference: {fileID: 902403458}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: logpass
+      value: 
+      objectReference: {fileID: 175397146}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: profile
+      value: 
+      objectReference: {fileID: 335457072}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: Logemail
+      value: 
+      objectReference: {fileID: 1059463928}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: SigCpass
+      value: 
+      objectReference: {fileID: 411315430}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: Sigemail
+      value: 
+      objectReference: {fileID: 704158924}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: profUser
+      value: 
+      objectReference: {fileID: 742257244}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: remember
+      value: 
+      objectReference: {fileID: 408693782}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: notipanel
+      value: 
+      objectReference: {fileID: 1624461700}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: profEmail
+      value: 
+      objectReference: {fileID: 1250301894}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: Forgotpass
+      value: 
+      objectReference: {fileID: 215239808}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: noti_title
+      value: 
+      objectReference: {fileID: 351305198}
+    - target: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: noti_mesage
+      value: 
+      objectReference: {fileID: 316790911}
+    - target: {fileID: 5810834082014047637, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810834082014047637, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 731.04956
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810834082014047637, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 199.19035
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810834082014047637, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.1474953
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810834082014047637, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810834082014047637, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810834082014047637, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810834082014047637, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810834082014047637, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810834082014047637, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5810834082014047637, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
 --- !u!1001 &68497649
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -807,50 +940,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102070667}
   m_CullTransparentMesh: 1
---- !u!1 &121133803
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 121133805}
-  - component: {fileID: 121133804}
-  m_Layer: 0
-  m_Name: Firebase Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &121133804
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121133803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fed910485776c74289f8d82f5577ee7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!4 &121133805
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121133803}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 757.2597, y: 278.78082, z: -127.703476}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &139359537
 GameObject:
   m_ObjectHideFlags: 0
@@ -2709,7 +2798,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 532906615}
         m_TargetAssemblyTypeName: FireBaseController, Assembly-CSharp
         m_MethodName: Opsignup
         m_Mode: 1
@@ -4886,6 +4975,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 528935015}
   m_CullTransparentMesh: 1
+--- !u!114 &532906615 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5810834082014047636, guid: 18e469311a440314da8e528feb4dfb00, type: 3}
+  m_PrefabInstance: {fileID: 57023386}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671e52821e82f294fa81af683a0fa211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &555105059
 GameObject:
   m_ObjectHideFlags: 0
@@ -5879,7 +5979,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 532906615}
         m_TargetAssemblyTypeName: FireBaseController, Assembly-CSharp
         m_MethodName: SignUpUser
         m_Mode: 1
@@ -11678,7 +11778,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 532906615}
         m_TargetAssemblyTypeName: FireBaseController, Assembly-CSharp
         m_MethodName: LoginUser
         m_Mode: 1

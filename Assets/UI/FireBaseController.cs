@@ -117,10 +117,10 @@ public class FireBaseController : MonoBehaviour
         notipanel.SetActive(false);
     }
     public void logout(){
-        auth.SignOut();
+       /* auth.SignOut();
         profEmail.text = "";
         profUser.text = "";
-        Oplog();
+        Oplog();*/
     }
     private void AddData(){
       /*FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
@@ -150,6 +150,7 @@ docRef.SetAsync(city).ContinueWithOnMainThread(task => {
 });
     }*/
     private void CreateUser(string email, string password, string user){
+      
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task => {
   if (task.IsCanceled) {
     Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
@@ -175,6 +176,21 @@ docRef.SetAsync(city).ContinueWithOnMainThread(task => {
       
       updateuserprofile(user);
         });
+       /* auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => { /////// codigo de documentacion
+  if (task.IsCanceled) {
+    Debug.LogError("CreateUserWithEmailAndPasswordAsync was canceled.");
+    return;
+  }
+  if (task.IsFaulted) {
+    Debug.LogError("CreateUserWithEmailAndPasswordAsync encountered an error: " + task.Exception);
+    return;
+  }
+
+  // Firebase user has been created.
+  Firebase.Auth.AuthResult result = task.Result;
+  Debug.LogFormat("Firebase user created successfully: {0} ({1})",
+      result.User.DisplayName, result.User.UserId);
+});*/
 
         
     }
@@ -255,7 +271,7 @@ if (user != null) {
 
     Debug.Log("User profile updated successfully."+Username);
     AddData();
-    notierror("Alert","Acount Succesfully created");
+    //notierror("Alert","Acount Succesfully created");
   });
 
 }
@@ -269,7 +285,7 @@ if (user != null) {
             isSigneds=true;
            // profEmail.text = "" + user.Email;
             profUser.text = ""+ user.DisplayName;
-            Opprofile();
+           // Opprofile();
         }
     }
 }
