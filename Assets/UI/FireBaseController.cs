@@ -117,10 +117,10 @@ public class FireBaseController : MonoBehaviour
         notipanel.SetActive(false);
     }
     public void logout(){
-       /* auth.SignOut();
+        auth.SignOut();
         profEmail.text = "";
         profUser.text = "";
-        Oplog();*/
+        Oplog();
     }
     private void AddData(){
       FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
@@ -283,9 +283,9 @@ if (user != null) {
     if(isSigned){
         if(!isSigneds){
             isSigneds=true;
-           // profEmail.text = "" + user.Email;
+            profEmail.text = "" + user.Email;
             profUser.text = ""+ user.DisplayName;
-           // Opprofile();
+            Opprofile();
         }
     }
 }
