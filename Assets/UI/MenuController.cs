@@ -13,8 +13,10 @@ public class MenuController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if(SceneManager.GetActiveScene().buildIndex==0){
         Save.SetActive(false);
         login.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -40,7 +42,7 @@ public class MenuController : MonoBehaviour
         login.SetActive(false);
         Save.SetActive(true);
      }
-        public void BacktoLogin(){
+    public void BacktoLogin(){
          SceneManager.LoadScene(0);
      }
      public void log(){

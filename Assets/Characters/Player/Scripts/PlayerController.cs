@@ -59,6 +59,7 @@ public class PlayerController : MonoBehaviour
     {
         Move();
         transform.GetChild(0).position = controller.transform.position;
+        transform.GetChild(0).rotation = Quaternion.Euler(0, CameraMain.eulerAngles.y, 0);
     }
 
     private void Move()
@@ -74,7 +75,7 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         // To display only on tutorial scene
-        if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1 && TutorialManager.isStep1)
+        if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1 && TutorialManager.isStep1&& SceneManager.GetActiveScene().buildIndex==1)
         {
             TutorialManager.isStep1 = false;
             TutorialManager.Instance.StepCompleted();
@@ -150,7 +151,6 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("Display step 5");
         if (other.gameObject.CompareTag("Enemy") && !hasHit)
         {
             Debug.Log("Damage to: " + other.gameObject.name);
