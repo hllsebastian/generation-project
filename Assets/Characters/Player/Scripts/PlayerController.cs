@@ -11,9 +11,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 playerVelocity;
     private bool groundedPlayer;
     private Transform CameraMain;
-    [SerializeField] private float backSpeed, rotationSpeed, gravityValue, jumpHeight, speed;
-    public float playerSpeed;
-    [SerializeField] private GameObject[] TutorialObjects;
+    [SerializeField] private float backSpeed, rotationSpeed, gravityValue, jumpHeight, playerSpeed, speed;
+    [SerializeField] private GameObject[] TutorialObject;
     private PlayerCam playerinput;
     private Transform child;
     private Animator anim;
@@ -58,8 +57,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
-        transform.GetChild(0).position = controller.transform.position;
-        transform.GetChild(0).rotation = Quaternion.Euler(0, CameraMain.eulerAngles.y, 0);
+       // transform.GetChild(0).position = controller.transform.position;
+        transform.GetChild(0).rotation =Quaternion.Euler(0, CameraMain.eulerAngles.y, 0);
     }
 
     private void Move()
@@ -75,11 +74,11 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         // To display only on tutorial scene
-        if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1 && TutorialManager.isStep1 && SceneManager.GetActiveScene().buildIndex == 1)
+        if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1 && TutorialManager.isStep1&& SceneManager.GetActiveScene().buildIndex==1)
         {
             TutorialManager.isStep1 = false;
             TutorialManager.Instance.StepCompleted();
-            TutorialObjects[0].SetActive(true);
+            TutorialObject[0].gameObject.SetActive(true);
             TutorialManager.isStep2 = true;
         }
 
@@ -96,7 +95,7 @@ public class PlayerController : MonoBehaviour
         {
             Quaternion rotation = Quaternion.Euler(new Vector3(child.localEulerAngles.x, CameraMain.localEulerAngles.y, child.localEulerAngles.z));
             child.rotation = Quaternion.Lerp(child.rotation, rotation, Time.deltaTime * rotationSpeed);
-            Walk();
+            Walk(moveinput);
         }
         else
         {
@@ -106,13 +105,28 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void Walk()
+    private void Walk(Vector2 moveinput)
     {
-
-        speed = playerSpeed;
-        anim.SetBool("Moving", true);
-        anim.SetFloat("Speed", 1.0f);
-
+        if(moveinput.y > 0){
+            speed = playerSpeed;
+            anim.SetBool("Moving", true);
+            anim.SetFloat("Forward", 1.0f);
+        }
+        if(moveinput.y < 0){
+            speed = backSpeed;
+            anim.SetBool("Moving", true);
+            anim.SetFloat("Forward", -1.0f);
+        }
+        if(moveinput.x > 0){
+            speed = playerSpeed;
+            anim.SetFloat("Side", 1.0f);
+            anim.SetBool("Moving", true);
+        }
+        if(moveinput.x < 0){
+            speed = playerSpeed;
+            anim.SetFloat("Side", -1.0f);
+            anim.SetBool("Moving", true);
+        }
     }
     private void Jump()
     {
@@ -161,10 +175,11 @@ public class PlayerController : MonoBehaviour
         // Only to use on Tutorial Scene
         if (TutorialManager.isStep4 && other.gameObject.CompareTag("Save_point"))
         {
+            Debug.Log("Display step 5");
             TutorialManager.Instance.StepCompleted();
             TutorialManager.isStep4 = false;
             TutorialManager.isStep5 = true;
-            TutorialObjects[1].SetActive(true);
+            TutorialObject[1].gameObject.SetActive(true);
         }
     }
 }
