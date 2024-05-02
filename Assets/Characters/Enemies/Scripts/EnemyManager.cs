@@ -130,9 +130,9 @@ public class EnemyManager : MonoBehaviour
 
     IEnumerator activateHitBox()
     {
-        BoxCollider.enabled = true;
+        //BoxCollider.enabled = true;
         yield return new WaitForSeconds(timeDamage);
-        BoxCollider.enabled = false;
+       // BoxCollider.enabled = false;
     }
 
     #region TakeDamage
