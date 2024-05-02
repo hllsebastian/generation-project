@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PowerElement : MonoBehaviour
 {
-
     private float speed = 10;
 
     void Update()
@@ -21,12 +20,17 @@ public class PowerElement : MonoBehaviour
         }
         Destroy(gameObject);
 
+        // To use only on tutorial scene
         if (TutorialManager.isStep3 && isEnemyTag)
         {
             TutorialManager.Instance.StepCompleted();
             TutorialManager.isStep3 = false;
             TutorialManager.isStep4 = true;
-            Debug.Log("Step4: " + TutorialManager.isStep4);
+
+            Light[] lights = FindObjectsOfType<Light>();
+            lights = System.Array.FindAll(lights, light => light.gameObject.CompareTag("TurnOnLight"));
+            foreach (Light light in lights)
+                light.enabled = true;
         }
 
     }

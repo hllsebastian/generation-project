@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class TutorialManager : MonoBehaviour
@@ -25,8 +26,17 @@ public class TutorialManager : MonoBehaviour
         ShowCurrentStep();
     }
 
-    void ShowCurrentStep()
+    void ShowCurrentStep(bool finalStep = false)
     {
+        if (finalStep)
+        {
+            isStep1 = false;
+            isStep2 = false;
+            isStep3 = false;
+            isStep4 = false;
+            isStep5 = false;
+        }
+
         foreach (GameObject panel in tutorialSteps)
         {
             panel.SetActive(false);
@@ -38,10 +48,9 @@ public class TutorialManager : MonoBehaviour
 
     }
 
-    public void StepCompleted()
+    public void StepCompleted(bool finalStep = false)
     {
         currentStepIndex++;
-        ShowCurrentStep();
-        Debug.Log("NEXT STEP");
+        ShowCurrentStep(finalStep);
     }
 }

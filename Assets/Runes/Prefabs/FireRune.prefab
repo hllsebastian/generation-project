@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 8874106355555450823}
   - component: {fileID: 8874106355555450816}
   - component: {fileID: 2664172655024775087}
-  - component: {fileID: 4081916065300077411}
+  - component: {fileID: 7526622116196812919}
   m_Layer: 0
-  m_Name: RuneSphere
+  m_Name: FireRune
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &4081916065300077411
+--- !u!114 &7526622116196812919
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,7 +124,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8874106355555450817}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eaf53e49f553cc342966c0afee40ecea, type: 3}
+  m_Script: {fileID: 11500000, guid: 24df9f9ef1f75e14fb38b136fac0ea6b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  runeEffects: {fileID: 11400000, guid: 68fe5811a3e23714e861556b617b6fcb, type: 2}
+  powerData: {fileID: 11400000, guid: 95d45578b61a0094ea4a02ff10ab4234, type: 2}
+  playerPrefab: {fileID: 0}
+  TutorialEnemy: {fileID: 0}
