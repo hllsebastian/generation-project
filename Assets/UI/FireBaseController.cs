@@ -19,6 +19,8 @@ public class FireBaseController : MonoBehaviour
     public Toggle remember;
     bool isSigneds=false;
     private FirebaseApp _app;
+        public Button botonNew,botonSave;
+    private bool save,neww;
     Firebase.Auth.FirebaseAuth auth;
     Firebase.Auth.FirebaseUser user;
 
@@ -79,8 +81,52 @@ public class FireBaseController : MonoBehaviour
         profile.SetActive(false);
         Forgot.SetActive(true);
     }
+         private void ReadData(){
+    //  PlayerController controlador = Player.GetComponent<PlayerController>();
+      //  controlador.enabled = false;
+        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+        DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
+docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
+{
+  DocumentSnapshot snapshot = task.Result;
+  if (snapshot.Exists) {
+    Debug.Log(String.Format("Document data for {0} document:", snapshot.Id));
+    Dictionary<string, object> user = snapshot.ToDictionary();
+    Debug.Log("ahora voy a");
+  
+SceneManager.LoadScene(Convert.ToInt32(user["scene"]));
+Debug.Log("x"+ Convert.ToSingle(user["x"]) +"y "+Convert.ToSingle(user["y"])+"z "+Convert.ToSingle(user["z"]));
+
+   foreach (KeyValuePair<string, object> pair in user) {
+
+      Debug.Log(String.Format("{0}: {1}", pair.Key, pair.Value));
+    }
+
+  // Player.transform.position=new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
+  } else {
+    Debug.Log(String.Format("Document {0} does not exist!", snapshot.Id));
+  }
+  
+});
+
+//controlador.enabled = true;*/
+    }
     public void StartGame(){
-         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+          if(save){
+             
+           // SavesinBase savesinBase = gameObject.AddComponent<SavesinBase>();
+
+           // savesinBase.Load();
+
+           ///////////////>/////> leer datos 
+
+        }else if(neww){
+            //que borre la info del .json aun no implementado
+            PlayerPrefs.DeleteAll();
+            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1);
+
+        }
     }
     public void LoginUser(){
         if(string.IsNullOrEmpty(Logemail.text)&&string.IsNullOrEmpty(logpass.text)){
@@ -91,7 +137,7 @@ public class FireBaseController : MonoBehaviour
         PlayerPrefs.SetInt("Recordar",remember.isOn.CompareTo(true));
         SignUser(Logemail.text,logpass.text);
     }
-    public void SignUpUser(){
+    public void SignUpUser(){ //boton crear usuario 
         if(string.IsNullOrEmpty(Sigemail.text)&&string.IsNullOrEmpty(Sigpass.text)&&string.IsNullOrEmpty(SigCpass.text)&&string.IsNullOrEmpty(Siguser.text)){
             notierror("Error ", "All fields are required");
             return;
@@ -127,10 +173,8 @@ public class FireBaseController : MonoBehaviour
       DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
       Dictionary<string, object> user = new Dictionary<string, object>
 {
-        { "x", -1.823 },
-        { "y", -1.31 },
-        { "z", -113.26 },
-        { "scene", 1 },
+        
+        { "scene", 0 },
 };
 docRef.SetAsync(user).ContinueWithOnMainThread(task => {
         Debug.Log("Added data to the alovelace document in the users collection.");
@@ -220,7 +264,13 @@ docRef.SetAsync(city).ContinueWithOnMainThread(task => {
         profEmail.text = "" + result.User.Email;
         profUser.text = ""+ result.User.DisplayName;
         Debug.Log(result.User.DisplayName+"--"+result.User.Email);
+        int primerjuego = PlayerPrefs.GetInt("PrimerJuego");
+        if(PlayerPrefs.GetInt("PrimerJuego")==0){
+            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1);
+
+        }else {
         Opprofile();
+        }
         });
         
     }
@@ -277,6 +327,26 @@ if (user != null) {
 }
 
 }
+    public void btsave(){
+
+    botonSave.image.color = Color.green;
+    botonNew.image.color = Color.white;
+    save=true;
+    neww=false;
+
+
+    }
+     public void btnew(){
+
+    botonNew.image.color = Color.green;
+    botonSave.image.color = Color.white;
+    save=false;
+    neww=true;
+
+    }
+
+
+
 
 
     private void Update() {
