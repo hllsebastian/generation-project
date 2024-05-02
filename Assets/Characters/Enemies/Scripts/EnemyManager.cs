@@ -18,6 +18,7 @@ public class EnemyManager : MonoBehaviour
     [Header("States")]
     public float attackRange;
     public float visionRange;
+    public Transform offset;
     private bool  playerInAttackRange, playerInVisionRange;
     [SerializeField] private bool isAttack;
     [SerializeField] private float attackDelay;
@@ -37,12 +38,17 @@ public class EnemyManager : MonoBehaviour
 
     private void Update()
     {
-        playerInVisionRange = Physics.CheckSphere(transform.position, visionRange, playerLayer);
+        playerInVisionRange = Physics.CheckSphere(offset.position, visionRange, playerLayer);
         playerInAttackRange = Physics.CheckSphere(transform.position, attackRange, playerLayer);
 
         if(!playerInAttackRange && !playerInVisionRange) EnemyPatroling(); //Patroling while there is no player in range
         if(!playerInAttackRange && playerInVisionRange) EnemyChasing(); //Chase if the player is in vision range
-        if(playerInAttackRange && playerInVisionRange) EnemyAttack(); //Attack when the player is in attack range
+        if(playerInAttackRange && playerInVisionRange) 
+        {
+            agent.velocity = Vector3.zero;
+            EnemyAttack(); //Attack when the player is in attack range
+        }
+
 
     }
     private void EnemyPatroling()
@@ -87,8 +93,10 @@ public class EnemyManager : MonoBehaviour
     private void EnemyAttack()
     {
         //agent.SetDestination(target.transform.position);
-        //transform.LookAt(target.transform.position);
-        if(Vector3.Distance(transform.position, target.transform.position) < 1.5f)
+
+        Vector3 dirRotate = new Vector3(target.transform.position.x - transform.position.x, transform.position.y, target.transform.position.z - transform.position.z);
+        transform.rotation = Quaternion.LookRotation(dirRotate);
+        if (Vector3.Distance(transform.position, target.transform.position) <= attackRange + 1.5f)
         {
             anim.SetBool("walk", false);
             anim.SetBool("run", false);
@@ -115,7 +123,7 @@ public class EnemyManager : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, attackRange);
         Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, visionRange);
+        Gizmos.DrawWireSphere(offset.position, visionRange);
         Gizmos.color = Color.green;
         Gizmos.DrawSphere(destinationPoint, 0.5f);
     }

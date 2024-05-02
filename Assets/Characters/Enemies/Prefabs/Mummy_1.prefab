@@ -834,6 +834,7 @@ Transform:
   - {fileID: 7532639487672341373}
   - {fileID: 7532639487672374683}
   - {fileID: 7532639487672428081}
+  - {fileID: 3017202921529734870}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -872,7 +873,7 @@ NavMeshAgent:
   m_Acceleration: 2
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 1.3
+  m_StoppingDistance: 1.1
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -893,8 +894,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destinationPointRange: 15
-  attackRange: 1.2
-  visionRange: 7
+  attackRange: 1
+  visionRange: 4
+  offset: {fileID: 3017202921529734870}
   isAttack: 0
   attackDelay: 2
   groundLayer:
@@ -2643,3 +2645,34 @@ Transform:
   m_Father: {fileID: 7532639487672327697}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 19.573427, y: -29.625647, z: -20.792433}
+--- !u!1 &7895956694228163576
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3017202921529734870}
+  m_Layer: 0
+  m_Name: Vision
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3017202921529734870
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7895956694228163576}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 2.55}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7532639487672334509}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
