@@ -25,7 +25,27 @@ public class EnemyManager : MonoBehaviour
     [Header("Layers")]
     [SerializeField] LayerMask groundLayer;
     [SerializeField] LayerMask playerLayer;
-
+    
+    [Header("Attacking")]
+    //[SerializeField] GameObject biteHitBox;
+    //[SerializeField] BoxCollider biteBoxCollider;
+    [SerializeField] private float timeBetweenAttacks = 3f;
+    [SerializeField] private float timeToHit = 0.8f;
+    [SerializeField] private float timeDamage = 0.3f;
+    [SerializeField] public int health;
+    [SerializeField] private int attackDamage;
+    bool hasHit = false;
+    private bool isDamagable = true;
+    private bool _isAlive = true;
+    protected bool isAlive
+    {
+        get { return _isAlive; }
+        private set
+        {
+            _isAlive = value;
+            anim.SetBool("isAlive", value);
+        }
+    }
 
     private void Awake()
     {
@@ -98,7 +118,48 @@ public class EnemyManager : MonoBehaviour
 
             isAttack = true;
             Invoke(nameof(ResetAttack), attackDelay);
+            Invoke(nameof(DealDamage), timeToHit);
+
         }
+    }
+
+    private void DealDamage()
+    {
+        StartCoroutine(activateHitBox());
+    }
+
+    IEnumerator activateHitBox()
+    {
+        BoxCollider.enabled = true;
+        yield return new WaitForSeconds(timeDamage);
+        BoxCollider.enabled = false;
+    }
+
+    #region TakeDamage
+    private void ResetDamagable()
+    {
+        isDamagable = true;
+    }
+
+    public void TakeDamage(int damage)
+    {
+        if (isDamagable)
+        {
+            health -= damage;
+            anim.SetTrigger("isHit");
+            isDamagable = false;
+            Invoke(nameof(ResetDamagable), 1f);
+        }
+
+        if (health <= 0) StartCoroutine(onDeath());
+    }
+
+    IEnumerator onDeath()
+    {
+        isAlive = false;
+        isDamagable = false;
+        yield return new WaitForSeconds(5f);
+        Destroy(gameObject.transform.parent.gameObject);
     }
     
     private void ResetAttack()
@@ -115,3 +176,4 @@ public class EnemyManager : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, visionRange);
     }
 }
+#endregion

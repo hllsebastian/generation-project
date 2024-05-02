@@ -57,8 +57,8 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
-        transform.GetChild(0).position = controller.transform.position;
-        transform.GetChild(0).rotation = Quaternion.Euler(0, CameraMain.eulerAngles.y, 0);
+       // transform.GetChild(0).position = controller.transform.position;
+        transform.GetChild(0).rotation =Quaternion.Euler(0, CameraMain.eulerAngles.y, 0);
     }
 
     private void Move()
@@ -83,11 +83,6 @@ public class PlayerController : MonoBehaviour
         }
 
         // Changes the height position of the player..
-        if (playerinput.Playercinem.Jump.triggered && groundedPlayer)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-            Jump();
-        }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
@@ -95,7 +90,7 @@ public class PlayerController : MonoBehaviour
         {
             Quaternion rotation = Quaternion.Euler(new Vector3(child.localEulerAngles.x, CameraMain.localEulerAngles.y, child.localEulerAngles.z));
             child.rotation = Quaternion.Lerp(child.rotation, rotation, Time.deltaTime * rotationSpeed);
-            Walk();
+            Walk(moveinput);
         }
         else
         {
@@ -105,20 +100,29 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void Walk()
+    private void Walk(Vector2 moveinput)
     {
-
-        speed = playerSpeed;
-        anim.SetBool("Moving", true);
-        anim.SetFloat("Speed", 1.0f);
-
+        if(moveinput.y > 0){
+            speed = playerSpeed;
+            anim.SetBool("Moving", true);
+            anim.SetFloat("Forward", 1.0f);
+        }
+        if(moveinput.y < 0){
+            speed = backSpeed;
+            anim.SetBool("Moving", true);
+            anim.SetFloat("Forward", -1.0f);
+        }
+        if(moveinput.x > 0){
+            speed = playerSpeed;
+            anim.SetFloat("Side", 1.0f);
+            anim.SetBool("Moving", true);
+        }
+        if(moveinput.x < 0){
+            speed = playerSpeed;
+            anim.SetFloat("Side", -1.0f);
+            anim.SetBool("Moving", true);
+        }
     }
-    private void Jump()
-    {
-
-    }
-
-
     IEnumerator onDeath()
     {
 
@@ -153,7 +157,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy") && !hasHit)
         {
             Debug.Log("Damage to: " + other.gameObject.name);
-            //other.GetComponent<EnemyController>().TakeDamage(attackDamage, 1.0f);
+            other.GetComponent<EnemyManager>().TakeDamage(attackDamage);
             hasHit = true;
         }
 
