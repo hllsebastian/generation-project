@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2005,6 +2005,11 @@ MonoBehaviour:
   m_FirstSelected: {fileID: 0}
   m_sendNavigationEvents: 1
   m_DragThreshold: 10
+--- !u!1 &1538055955 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6212553083672278116, guid: 79778b1889240f04fa93251392d7925a, type: 3}
+  m_PrefabInstance: {fileID: 1996435639}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1689698494
 GameObject:
   m_ObjectHideFlags: 0
@@ -7003,6 +7008,20 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6212553083672373316, guid: 79778b1889240f04fa93251392d7925a, type: 3}
   m_PrefabInstance: {fileID: 1996435639}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1843095865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1538055955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e50ebb4e1f3be146b53ab3c2f7445e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Player: {fileID: 0}
+  load: {fileID: 0}
 --- !u!1 &1912737797
 GameObject:
   m_ObjectHideFlags: 0
@@ -7175,6 +7194,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 40508430}
     m_Modifications:
+    - target: {fileID: 115423240, guid: 79778b1889240f04fa93251392d7925a, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 521483041, guid: 79778b1889240f04fa93251392d7925a, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -7255,7 +7278,8 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 115423240, guid: 79778b1889240f04fa93251392d7925a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 79778b1889240f04fa93251392d7925a, type: 3}
 --- !u!1 &1999964978 stripped
 GameObject:

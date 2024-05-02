@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-//using Firebase.Firestore;
+using Firebase.Firestore;
 using Firebase.Extensions;
 using System;
 using UnityEngine.SceneManagement;
@@ -34,9 +34,8 @@ public class BasedeDatos : MonoBehaviour
       Debug.Log("y"+ transform.position.y);
       Debug.Log("z"+ transform.position.z);
       PlayerPrefs.SetInt("PrimeraCarga", SceneManager.GetActiveScene().buildIndex); //actualiza que no es la primera vez que entra en escena
-      int primeraCarga = PlayerPrefs.GetInt("PrimeraCarga");
-      Debug.Log("Valor de PrimeraCarga: " + primeraCarga);
-   
+      PlayerPrefs.SetInt("PrimerJuego",SceneManager.GetActiveScene().buildIndex);
+     
         
     }
 
@@ -50,12 +49,9 @@ public class BasedeDatos : MonoBehaviour
     // where app is a Firebase.FirebaseApp property of your application class.
        InitializeFirebase();
        //PlayerPrefs.SetInt("PrimeraCarga", 0); //usado para probar el juego 
-       int primeraCarga = PlayerPrefs.GetInt("PrimeraCarga");
 
-    // Imprime el valor en la consola
-    Debug.Log("Valor de PrimeraCarga: " + primeraCarga);
       // Comprueba si no es la primera vez que se carga la escena
-    if (PlayerPrefs.GetInt("PrimeraCarga") != SceneManager.GetActiveScene().buildIndex-1)
+    if (PlayerPrefs.GetInt("PrimerJuego") != SceneManager.GetActiveScene().buildIndex-1 &&SceneManager.GetActiveScene().buildIndex!=0)
     {
         StartCoroutine(ReadDataCoroutine());
     }
@@ -87,7 +83,7 @@ public class BasedeDatos : MonoBehaviour
     }
   
     private void UpdateData(){
-      /*  FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+     FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
         DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
         Debug.Log(Player.transform.position);
         Debug.Log(transform.position);
@@ -101,7 +97,7 @@ Dictionary<string, object> user = new Dictionary<string, object>
 };
 docRef.UpdateAsync(user).ContinueWithOnMainThread(task => {
         Debug.Log("Added data to the alovelace document in the users collection."+auth.CurrentUser.UserId);
-});*/
+});
     }
 
     private void ReadData(){
@@ -138,7 +134,7 @@ controlador.enabled = true;*/
 {
   //load.enabled = true;
 
-    /*PlayerController controlador = Player.GetComponent<PlayerController>();
+    PlayerController controlador = Player.GetComponent<PlayerController>();
     controlador.enabled = false;
 
     FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
@@ -171,7 +167,7 @@ controlador.enabled = true;*/
     }
   yield return new WaitForSeconds(2);
     controlador.enabled = true;
-   // load.enabled = true;*/
+   // load.enabled = true;
    yield return new WaitForSeconds(2);
 }
 

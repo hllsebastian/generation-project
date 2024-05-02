@@ -120,6 +120,7 @@ Debug.Log("x"+ Convert.ToSingle(user["x"]) +"y "+Convert.ToSingle(user["y"])+"z 
            // savesinBase.Load();
 
            ///////////////>/////> leer datos 
+          ReadData();
 
         }else if(neww){
             //que borre la info del .json aun no implementado
@@ -180,19 +181,7 @@ docRef.SetAsync(user).ContinueWithOnMainThread(task => {
         Debug.Log("Added data to the alovelace document in the users collection.");
 });
     }
-    /*private void AddData(){
-           FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
-     DocumentReference docRef = db.Collection("cities").Document(auth.CurrentUser.UserId);
-Dictionary<string, object> city = new Dictionary<string, object>
-{
-        { "Name", "Los Angeles" },
-        { "State", "CA" },
-        { "Country", "USA" }
-};
-docRef.SetAsync(city).ContinueWithOnMainThread(task => {
-        Debug.Log("Added data to the LA document in the cities collection.");
-});
-    }*/
+
     private void CreateUser(string email, string password, string user){
       
         auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWithOnMainThread(task => {
@@ -219,6 +208,7 @@ docRef.SetAsync(city).ContinueWithOnMainThread(task => {
       result.User.DisplayName, result.User.UserId);
       
       updateuserprofile(user);
+      Oplog();
         });
        /* auth.CreateUserWithEmailAndPasswordAsync(email, password).ContinueWith(task => { /////// codigo de documentacion
   if (task.IsCanceled) {
