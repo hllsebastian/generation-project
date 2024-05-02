@@ -12,20 +12,22 @@ public class AdministradorDeEscenas : MonoBehaviour
         //DontDestroyOnLoad(this.gameObject); // Mantén este objeto
     }
 
-   /* public void CambiarEscena(int nombreDeLaEscena)
-    {
-        // Guarda los objetos que quieres mantener
-        DontDestroyOnLoad(Canvas);
-        DontDestroyOnLoad(eventos);
+    /* public void CambiarEscena(int nombreDeLaEscena)
+     {
+         // Guarda los objetos que quieres mantener
+         DontDestroyOnLoad(Canvas);
+         DontDestroyOnLoad(eventos);
 
-        // Carga la nueva escena
-        SceneManager.LoadScene(nombreDeLaEscena);
-    }*/
-    private void OnTriggerEnter(Collider other) {
-    Debug.Log("Collision Detected with " + other.gameObject.name);
-    if(other.CompareTag("Player")){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
-        
+         // Carga la nueva escena
+         SceneManager.LoadScene(nombreDeLaEscena);
+     }*/
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Collision Detected with " + other.gameObject.name);
+        if (other.CompareTag("Player"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            TutorialManager.Instance.StepCompleted(true);
+        }
     }
-}
 }

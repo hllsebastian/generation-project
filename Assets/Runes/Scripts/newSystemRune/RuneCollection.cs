@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
-
+using UnityEngine.SceneManagement;
 
 // This script handle the Runes collected: display rune on the UI, 
 // call the methods for use the power and freezing it
@@ -10,6 +10,7 @@ public class RuneCollection : MonoBehaviour
     public static RuneCollection Instance { get; private set; }
     [SerializeField] public List<RunePower> collectedPowers = new List<RunePower>();
     [SerializeField] public Image[] powerUI = new Image[3];
+    private Button[] powerButtons = new Button[3];
 
     private void Awake()
     {
@@ -21,6 +22,26 @@ public class RuneCollection : MonoBehaviour
         else
         {
             Destroy(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().buildIndex != 1)
+        {
+            Debug.Log("IsDifferent: " + powerButtons.Length);
+            for (int i = 0; i < powerUI.Length; i++)
+            {
+                Debug.Log("Buttons: " + powerButtons.Length);
+                var button = powerButtons[i] = powerUI[i].GetComponent<Button>(); // Encuentra el botón en la imagen
+                var hasButton = button != null;
+                if (hasButton)
+                {
+                    Debug.Log("Has Button: " + hasButton);
+                }
+                powerButtons[i].onClick.RemoveAllListeners(); // Limpia los eventos previos
+                powerButtons[i].onClick.AddListener(() => UsePower(i)); // Suscribe la lógica de uso del poder
+            }
         }
     }
 
@@ -42,6 +63,24 @@ public class RuneCollection : MonoBehaviour
 
     public void UsePower(int index)
     {
+        // if (SceneManager.GetActiveScene().buildIndex != 1)
+        // {
+        //     Debug.Log("IsDifferent: " + powerButtons.Length);
+        //     for (int i = 0; i < powerUI.Length; i++)
+        //     {
+        //         Debug.Log("Buttons: " + powerButtons.Length);
+        //         var button = powerButtons[i] = powerUI[i].GetComponent<Button>(); // Encuentra el botón en la imagen
+        //         var hasButton = button != null;
+        //         if (hasButton)
+        //         {
+        //             Debug.Log("Has Button: " + hasButton);
+        //         }
+        //         powerButtons[i].onClick.RemoveAllListeners(); // Limpia los eventos previos
+        //         powerButtons[i].onClick.AddListener(() => UsePower(i)); // Suscribe la lógica de uso del poder
+        //     }
+        // }
+
+        Debug.Log("INDEX: " + index);
         RunePower rune = collectedPowers[index];
 
         if (index >= collectedPowers.Count || rune == null)
