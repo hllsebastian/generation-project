@@ -58,8 +58,6 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         Move();
-       // transform.GetChild(0).position = controller.transform.position;
-        transform.GetChild(0).rotation =Quaternion.Euler(0, CameraMain.eulerAngles.y, 0);
         // transform.GetChild(0).position = controller.transform.position;
         transform.GetChild(0).rotation = Quaternion.Euler(0, CameraMain.eulerAngles.y, 0);
     }

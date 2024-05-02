@@ -29,7 +29,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2544769197266879773}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1296913525
 GameObject:
@@ -60,7 +60,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2544769197266879773}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2544769197266879774
 GameObject:
@@ -73,9 +73,9 @@ GameObject:
   - component: {fileID: 2544769197266879773}
   - component: {fileID: 2544769197266879772}
   - component: {fileID: 2544769197266879775}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,9 +92,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 8872650729984520737}
   - {fileID: 1073082108}
   - {fileID: 1296913526}
-  - {fileID: 8872650729984520737}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -114,8 +114,8 @@ MonoBehaviour:
   rotationSpeed: 5
   gravityValue: -9.8
   jumpHeight: 0
-  playerSpeed: 10
   speed: 0
+  playerSpeed: 7
   TutorialObject: []
   attackDamage: 0
   health: 0
@@ -178,7 +178,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6755974463049774210, guid: b67c6fa27afedb04b956c45c2be94f16, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6755974463049774210, guid: b67c6fa27afedb04b956c45c2be94f16, type: 3}
       propertyPath: m_LocalPosition.x
