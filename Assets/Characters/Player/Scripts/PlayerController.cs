@@ -83,11 +83,6 @@ public class PlayerController : MonoBehaviour
         }
 
         // Changes the height position of the player..
-        if (playerinput.Playercinem.Jump.triggered && groundedPlayer)
-        {
-            playerVelocity.y += Mathf.Sqrt(jumpHeight * -3.0f * gravityValue);
-            Jump();
-        }
 
         playerVelocity.y += gravityValue * Time.deltaTime;
         controller.Move(playerVelocity * Time.deltaTime);
@@ -128,12 +123,6 @@ public class PlayerController : MonoBehaviour
             anim.SetBool("Moving", true);
         }
     }
-    private void Jump()
-    {
-
-    }
-
-
     IEnumerator onDeath()
     {
 
@@ -168,7 +157,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy") && !hasHit)
         {
             Debug.Log("Damage to: " + other.gameObject.name);
-            //other.GetComponent<EnemyController>().TakeDamage(attackDamage, 1.0f);
+            other.GetComponent<EnemyManager>().TakeDamage(attackDamage);
             hasHit = true;
         }
 
