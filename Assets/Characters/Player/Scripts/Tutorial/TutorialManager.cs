@@ -11,7 +11,7 @@ public class TutorialManager : MonoBehaviour
     public static bool isStep3;
     public static bool isStep4;
     public static bool isStep5;
-    public static bool reStartTutorial;
+    // public static bool reStartTutorial;
 
 
 
@@ -32,14 +32,6 @@ public class TutorialManager : MonoBehaviour
     void Start()
     {
         ShowCurrentStep();
-    }
-
-    private void Update()
-    {
-        if (reStartTutorial)
-        {
-            RestartTutorial();
-        }
     }
 
     void ShowCurrentStep(bool finalStep = false)
@@ -70,9 +62,9 @@ public class TutorialManager : MonoBehaviour
         ShowCurrentStep(finalStep);
     }
 
-    private void RestartTutorial()
+    public void RestartTutorial()
     {
-        reStartTutorial = false;
+        // reStartTutorial = false;
         isStep1 = true;
         currentStepIndex = 0;
         ShowCurrentStep();
