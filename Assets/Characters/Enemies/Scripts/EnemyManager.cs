@@ -130,7 +130,7 @@ public class EnemyManager : MonoBehaviour
         if (!isAttack)
         {
             // Attack Patron
-            anim.SetTrigger("attack");
+            anim.SetTrigger("isAttacking");
 
             isAttack = true;
             Invoke(nameof(ResetAttack), attackDelay);
