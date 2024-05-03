@@ -128,5 +128,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   powerData: {fileID: 11400000, guid: 7596d1c0b47271b45a71a79af1fb9a38, type: 2}
-  playerPrefab: {fileID: 0}
+  playerPrefab: {fileID: 2544769197266879774, guid: c4924af4e0657254dbafbdfb471be88d, type: 3}
   TutorialEnemy: {fileID: 0}

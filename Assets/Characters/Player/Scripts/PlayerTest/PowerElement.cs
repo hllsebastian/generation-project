@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PowerElement : MonoBehaviour
@@ -11,6 +9,7 @@ public class PowerElement : MonoBehaviour
         transform.Translate(Vector3.forward * speed * Time.deltaTime);
     }
 
+    [System.Obsolete]
     private void OnCollisionEnter(Collision other)
     {
         bool isEnemyTag = other.gameObject.tag == "Enemy";
@@ -27,8 +26,11 @@ public class PowerElement : MonoBehaviour
             TutorialManager.isStep3 = false;
             TutorialManager.isStep4 = true;
 
+            ParticleSystem particleSystem = GameObject.Find("LightParticles").GetComponent<ParticleSystem>();
             Light[] lights = FindObjectsOfType<Light>();
             lights = System.Array.FindAll(lights, light => light.gameObject.CompareTag("TurnOnLight"));
+
+            particleSystem.Play();
             foreach (Light light in lights)
                 light.enabled = true;
         }
