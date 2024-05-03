@@ -63,26 +63,7 @@ float stopThreshold = 0.1f;
         Move();
         // transform.GetChild(0).position = controller.transform.position;
         transform.GetChild(0).rotation = Quaternion.Euler(0, CameraMain.eulerAngles.y, 0);
-       /* Debug.Log(""+CameraMain.localEulerAngles.y);
-        
-            float currentAngle = CameraMain.localEulerAngles.y;
 
-    // Comprueba si el jugador se ha movido
-    if (Mathf.Abs(currentAngle - lastAngle) > stopThreshold) {
-        // El jugador se está moviendo
-        if(currentAngle < 0 || (currentAngle > 180 && currentAngle < 360)){
-            Debug.Log("izq");
-        }
-        if(currentAngle > 0 && currentAngle < 180){
-            Debug.Log("der");
-        }
-    } else {
-        // El jugador se ha detenido
-        // Aquí puedes reiniciar tu variable de dirección
-    }
-
-    // Actualiza el último ángulo para la próxima comprobación
-    lastAngle = currentAngle;*/
     if (Mathf.Abs(currentAngle - lastAngle) > stopThreshold) {
         // El jugador se está moviendo
         if(currentAngle < lastAngle || (currentAngle - lastAngle > 180 && currentAngle - lastAngle < 360)){
