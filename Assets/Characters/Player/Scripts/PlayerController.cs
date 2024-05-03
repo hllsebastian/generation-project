@@ -87,11 +87,13 @@ float stopThreshold = 0.1f;
         // El jugador se está moviendo
         if(currentAngle < lastAngle || (currentAngle - lastAngle > 180 && currentAngle - lastAngle < 360)){
             Debug.Log("izq");
-           
+            anim.SetFloat("Turning", -1.0f);
+            anim.SetBool("Moving", false);   
         }
         if(currentAngle > lastAngle && (currentAngle - lastAngle < 180)){
             Debug.Log("der");
-            
+            anim.SetFloat("Turning", 1.0f);
+            anim.SetBool("Moving", false);
         }
     }
     lastAngle = currentAngle;
