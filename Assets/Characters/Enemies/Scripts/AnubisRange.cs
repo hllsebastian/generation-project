@@ -14,7 +14,8 @@ public class AnubisRange : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            agent.speed = 0;
+            boss.StopMovement();
+            //agent.velocity = Vector3.zero;
             melee = Random.Range(0, 5);
             switch(melee)
             {

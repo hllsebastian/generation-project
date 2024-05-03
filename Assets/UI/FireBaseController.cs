@@ -27,13 +27,7 @@ public class FireBaseController : MonoBehaviour
 
     bool isSigned=false;
     void Start() {
-      /*
-      Debug.Log(""+remember.isOn.CompareTo(true));
 
-      if(remember.isOn.CompareTo(true)==0){
-
-      }*/
-     // logout();
 
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
   var dependencyStatus = task.Result;
@@ -44,11 +38,7 @@ public class FireBaseController : MonoBehaviour
       _app = Firebase.FirebaseApp.DefaultInstance;
 
        InitializeFirebase();
-       StartCoroutine(ReadDataCoroutine());
-        if (PlayerPrefs.GetInt("Recordar") == -1)
-    {
-        logout();
-    }
+       
        
 
     // Set a flag here to indicate whether Firebase is ready to use by your app.
@@ -58,6 +48,12 @@ public class FireBaseController : MonoBehaviour
     // Firebase Unity SDK is not safe to use here.
   }
 });
+    StartCoroutine(ReadDataCoroutine());
+    Debug.Log("start"+Scene);
+        if (PlayerPrefs.GetInt("Recordar") == -1)
+    {
+        logout();
+    }
     }
     public void Oplog(){
         login.SetActive(true);
@@ -130,6 +126,7 @@ public class FireBaseController : MonoBehaviour
 
            ///////////////>/////> leer datos 
           StartCoroutine(ReadDataCoroutine());
+          Debug.Log("startgame"+Scene);
           SceneManager.LoadScene(Scene);
 
         }else if(neww){
@@ -266,6 +263,7 @@ docRef.SetAsync(user).ContinueWithOnMainThread(task => {
         profUser.text = ""+ result.User.DisplayName;
         Debug.Log(result.User.DisplayName+"--"+result.User.Email);
         PlayerPrefs.SetInt("PrimerJuego",Scene);
+        Debug.Log("siguser"+Scene);
         if(PlayerPrefs.GetInt("PrimerJuego")==0){
             SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1);
 
