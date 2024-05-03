@@ -61,6 +61,7 @@ public class AnubisController : MonoBehaviour
                         //Walk
                         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 2);
                         anim.SetBool("walk", true);
+                        anim.SetBool("run", false);
                         
                         if(transform.rotation == rotation)
                         {
@@ -79,11 +80,12 @@ public class AnubisController : MonoBehaviour
                     case 1:
                         //Run
                         transform.rotation = Quaternion.RotateTowards(transform.rotation, rotation, 2);
-                        anim.SetBool("walk", true);
+                        anim.SetBool("run", true);
+                        anim.SetBool("walk", false);
                         if (transform.rotation == rotation)
                         {
                             //transform.Translate(Vector3.forward * speed * 2.5f * Time.deltaTime);
-                            agent.speed *= 3f;
+                            agent.speed *= 2f;
                             agent.SetDestination(target.transform.position);
                         }
                         anim.SetBool("attack", false);
@@ -161,6 +163,11 @@ public class AnubisController : MonoBehaviour
         {
             hitBox.GetComponent<Collider>().enabled = false;
         }
+    }
+
+    public void StopMovement()
+    {
+        agent.velocity = Vector3.zero;
     }
 
     //Fase 2
