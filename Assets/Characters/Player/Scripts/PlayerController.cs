@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     private bool isDamagable = true;
     private bool hasHit = false;
     [SerializeField] public int attackDamage, health;
+    [SerializeField] private BarraddeVida barradeVida;
     float lastAngle = 0f;
 float stopThreshold = 0.1f;
 
@@ -55,6 +56,7 @@ float stopThreshold = 0.1f;
     {
         CameraMain = Camera.main.transform;
         child = transform.GetChild(0).transform;
+        barradeVida.iniciarBarra(health);
     }
 
     private void Update()
@@ -161,6 +163,7 @@ float stopThreshold = 0.1f;
         {
             speed = 0f;
             health -= damage;
+            barradeVida.Cambiarvidaactial(health);
             Debug.Log("Player hit");
             anim.SetTrigger("isHit");
             isDamagable = false;
