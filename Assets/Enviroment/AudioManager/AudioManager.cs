@@ -1,5 +1,6 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -32,7 +33,14 @@ public class AudioManager : MonoBehaviour
 
     private void Start()
     {
+        // if (SceneManager.GetActiveScene().buildIndex == 0)
+        // {
+        // PlayMusic("LoginSample");
+        // }
+        // else
+        // {
         PlayMusic("Sample1");
+        // }
     }
 
     public void PlayMusic(string name)
