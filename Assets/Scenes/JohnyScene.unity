@@ -813,7 +813,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 401400211}
-  m_LocalRotation: {x: 0.22270201, y: -0.042119775, z: 0.0096312575, w: 0.97392863}
+  m_LocalRotation: {x: 0.22270203, y: -0.04211976, z: 0.009631257, w: 0.97392863}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -10952,6 +10952,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3626378318233506528, guid: 0ef94305d4dc9144bb591b737bafa9ab, type: 3}
+      propertyPath: sounds.Array.data[0].volume
+      value: 0.608
+      objectReference: {fileID: 0}
     - target: {fileID: 3626378318233506529, guid: 0ef94305d4dc9144bb591b737bafa9ab, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -12128,6 +12132,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4268978, guid: 8441194c82fd894458074039c594420a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4268978, guid: 8441194c82fd894458074039c594420a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1431997634769381875, guid: 8441194c82fd894458074039c594420a, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 

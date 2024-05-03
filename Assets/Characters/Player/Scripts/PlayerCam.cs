@@ -58,7 +58,7 @@ public partial class @PlayerCam: IInputActionCollection2, IDisposable
                     ""name"": ""Action"",
                     ""type"": ""Value"",
                     ""id"": ""a83c4197-e13e-4c6f-a6cb-cdd4a7e937b1"",
-                    ""expectedControlType"": ""Button"",
+                    ""expectedControlType"": ""Double"",
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true

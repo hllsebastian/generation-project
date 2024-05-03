@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,11 +20,12 @@ public class PlayerController : MonoBehaviour
     private Animator anim;
     private bool _isAlive = true;
     private bool isDamagable = true;
+    private bool canAttack = true;
     private bool hasHit = false;
     [SerializeField] public int attackDamage, health;
     [SerializeField] private BarraddeVida barradeVida;
     float lastAngle = 0f;
-float stopThreshold = 0.1f;
+    float stopThreshold = 0.1f;
 
 
     public bool isAlive
@@ -56,7 +58,7 @@ float stopThreshold = 0.1f;
     {
         CameraMain = Camera.main.transform;
         child = transform.GetChild(0).transform;
-        barradeVida.iniciarBarra(health);
+        // barradeVida.iniciarBarra(health);
     }
 
     private void Update()
@@ -66,20 +68,28 @@ float stopThreshold = 0.1f;
         // transform.GetChild(0).position = controller.transform.position;
         transform.GetChild(0).rotation = Quaternion.Euler(0, CameraMain.eulerAngles.y, 0);
 
-    if (Mathf.Abs(currentAngle - lastAngle) > stopThreshold) {
-        // El jugador se está moviendo
-        if(currentAngle < lastAngle || (currentAngle - lastAngle > 180 && currentAngle - lastAngle < 360)){
-            Debug.Log("izq");
-            anim.SetFloat("Turning", -1.0f);
-            anim.SetBool("Moving", false);   
+        if (Mathf.Abs(currentAngle - lastAngle) > stopThreshold)
+        {
+            // El jugador se está moviendo
+            if (currentAngle < lastAngle || (currentAngle - lastAngle > 180 && currentAngle - lastAngle < 360))
+            {
+                Debug.Log("izq");
+                anim.SetFloat("Turning", -1.0f);
+                anim.SetBool("Moving", false);
+            }
+            if (currentAngle > lastAngle && (currentAngle - lastAngle < 180))
+            {
+                Debug.Log("der");
+                anim.SetFloat("Turning", 1.0f);
+                anim.SetBool("Moving", false);
+            }
+
+
         }
-        if(currentAngle > lastAngle && (currentAngle - lastAngle < 180)){
-            Debug.Log("der");
-            anim.SetFloat("Turning", 1.0f);
-            anim.SetBool("Moving", false);
-        }
-    }
-    lastAngle = currentAngle;
+        lastAngle = currentAngle;
+
+        if (canAttack)
+            Attack();
     }
 
     private void Move()
@@ -89,6 +99,7 @@ float stopThreshold = 0.1f;
         {
             playerVelocity.y = 0f;
         }
+
         Vector2 moveinput = playerinput.Playercinem.Move.ReadValue<Vector2>();
         Vector3 move = (CameraMain.forward * moveinput.y + CameraMain.right * moveinput.x); //new Vector3(moveinput.x , 0f , moveinput.y);    
         move.y = 0f;
@@ -195,5 +206,22 @@ float stopThreshold = 0.1f;
             TutorialManager.isStep5 = true;
             TutorialObject[1].gameObject.SetActive(true);
         }
+    }
+
+    private void Attack()
+    {
+        float rightStickPressed = playerinput.Playercinem.Action.ReadValue<float>();
+        if (rightStickPressed >= 1)
+        {
+            anim.SetBool("isAttacking", true);
+            canAttack = false;
+            StartCoroutine(EnableAttack());
+        }
+    }
+
+    private IEnumerator EnableAttack()
+    {
+        yield return new WaitForSeconds(1.0f);
+        canAttack = true;
     }
 }

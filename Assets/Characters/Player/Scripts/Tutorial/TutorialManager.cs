@@ -1,12 +1,11 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
+// This script handle the message to display on tutorial scene
 
 public class TutorialManager : MonoBehaviour
 {
     [SerializeField] public GameObject[] tutorialSteps;
     private int currentStepIndex = 0;
-
     public static bool isStep1 = true;
     public static bool isStep2;
     public static bool isStep3;
@@ -17,8 +16,14 @@ public class TutorialManager : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance == null) Instance = this;
-
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != null)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void Start()
