@@ -14,7 +14,6 @@ public class PlayerTest : MonoBehaviour
     {
         playerInput = GetComponent<PlayerInput>();
         moveAction = playerInput.actions.FindAction("Move");
-        AudioManager.instance.PlayMusic("Distant Land_Loop");
     }
 
 

@@ -1,0 +1,63 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5810834082014047635
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5810834082014047637}
+  - component: {fileID: 5810834082014047636}
+  m_Layer: 0
+  m_Name: FireBaseController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &5810834082014047637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810834082014047635}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 731.04956, y: 199.19035, z: 3.1474953}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5810834082014047636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5810834082014047635}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 671e52821e82f294fa81af683a0fa211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  login: {fileID: 0}
+  signup: {fileID: 0}
+  profile: {fileID: 0}
+  Forgot: {fileID: 0}
+  notipanel: {fileID: 0}
+  Logemail: {fileID: 0}
+  logpass: {fileID: 0}
+  Sigpass: {fileID: 0}
+  Sigemail: {fileID: 0}
+  SigCpass: {fileID: 0}
+  Siguser: {fileID: 0}
+  Forgotpass: {fileID: 0}
+  noti_title: {fileID: 0}
+  noti_mesage: {fileID: 0}
+  profUser: {fileID: 0}
+  profEmail: {fileID: 0}
+  remember: {fileID: 0}

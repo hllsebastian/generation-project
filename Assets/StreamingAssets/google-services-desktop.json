@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1087810168012",
+    "project_id": "archaoabsorb",
+    "storage_bucket": "archaoabsorb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087810168012:android:427bf9a13ffd9a873f8e69",
+        "android_client_info": {
+          "package_name": "com.DefaultCompany.generationprojectv22"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1087810168012-v9ijge0oq8qvm3f36hh4uapn0kjd18uc.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.DefaultCompany.generationprojectv22",
+            "certificate_hash": "262d01a3dde286a0ac1b73ba499e45bf67a5a9df"
+          }
+        },
+        {
+          "client_id": "1087810168012-1pk5qvf06lqkf9el7cune1f1afo6dalh.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC3xnERqVP5f8eZ4TZKfgK5htfv0sbF9rk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1087810168012-1pk5qvf06lqkf9el7cune1f1afo6dalh.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

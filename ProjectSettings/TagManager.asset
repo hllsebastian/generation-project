@@ -6,6 +6,10 @@ TagManager:
   tags:
   - FireGround
   - InvisibleGround
+  - Save_point
+  - Enemy
+  - load
+  - TurnOnLight
   layers:
   - Default
   - TransparentFX
@@ -23,9 +27,9 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
+  - PlayerLayer
+  - Ground
+  - Obstacle
   - 
   - 
   - 
