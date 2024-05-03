@@ -45,6 +45,7 @@ public class FireBaseController : MonoBehaviour
 
        InitializeFirebase();
         if (PlayerPrefs.GetInt("Recordar") == -1)
+        StartCoroutine(ReadDataCoroutine());
     {
         logout();
     }
@@ -82,36 +83,6 @@ public class FireBaseController : MonoBehaviour
         profile.SetActive(false);
         Forgot.SetActive(true);
     }
-        /* private void ReadData(){
-    //  PlayerController controlador = Player.GetComponent<PlayerController>();
-      //  controlador.enabled = false;
-        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
-        DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
-docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-{
-  DocumentSnapshot snapshot = task.Result;
-  if (snapshot.Exists) {
-    Debug.Log(String.Format("Document data for {0} document:", snapshot.Id));
-    Dictionary<string, object> user = snapshot.ToDictionary();
-    Debug.Log("ahora voy a");
- 
-Scene=Convert.ToInt32(user["scene"]);
-Debug.Log("x"+ Convert.ToSingle(user["x"]) +"y "+Convert.ToSingle(user["y"])+"z "+Convert.ToSingle(user["z"]));
-
-   foreach (KeyValuePair<string, object> pair in user) {
-
-      Debug.Log(String.Format("{0}: {1}", pair.Key, pair.Value));
-    }
-
-  // Player.transform.position=new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
-  } else {
-    Debug.Log(String.Format("Document {0} does not exist!", snapshot.Id));
-  }
-  
-});
-
-//controlador.enabled = true;
-    }*/
     private IEnumerator ReadDataCoroutine()
 {
   //load.enabled = true;
@@ -130,30 +101,28 @@ Debug.Log("x"+ Convert.ToSingle(user["x"]) +"y "+Convert.ToSingle(user["y"])+"z 
         Dictionary<string, object> user = task.Result.ToDictionary();
         Debug.Log("ahora voy a");
 
-        Debug.Log("x" + Convert.ToSingle(user["x"]) + "y " + Convert.ToSingle(user["y"]) + "z " + Convert.ToSingle(user["z"]));
 
         foreach (KeyValuePair<string, object> pair in user)
         {
             Debug.Log(String.Format("{0}: {1}", pair.Key, pair.Value));
         }
-        if(Convert.ToInt32(user["scene"])!=SceneManager.GetActiveScene().buildIndex){
+      /*  if(Convert.ToInt32(user["scene"])!=SceneManager.GetActiveScene().buildIndex){
          SceneManager.LoadScene(Convert.ToInt32(user["scene"]));
-        }
+        }*/
+        Scene=Convert.ToInt32(user["scene"]);
     }
     else
     {
         Debug.Log(String.Format("Document {0} does not exist!", task.Result.Id));
     }
-  yield return new WaitForSeconds(2);
+  yield return new WaitForSeconds(0.5f);
 
 }
     public void StartGame(){
          //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
           if(save){
              
-           // SavesinBase savesinBase = gameObject.AddComponent<SavesinBase>();
-
-           // savesinBase.Load();
+           
 
            ///////////////>/////> leer datos 
           StartCoroutine(ReadDataCoroutine());
@@ -292,7 +261,8 @@ docRef.SetAsync(user).ContinueWithOnMainThread(task => {
         profEmail.text = "" + result.User.Email;
         profUser.text = ""+ result.User.DisplayName;
         Debug.Log(result.User.DisplayName+"--"+result.User.Email);
-        StartCoroutine(ReadDataCoroutine());
+       // StartCoroutine(ReadDataCoroutine());
+        Debug.Log(""+Scene);
         PlayerPrefs.SetInt("PrimerJuego",Scene);
         if(PlayerPrefs.GetInt("PrimerJuego")==0){
             SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1);

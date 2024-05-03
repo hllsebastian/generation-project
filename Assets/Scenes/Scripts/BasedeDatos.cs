@@ -53,7 +53,7 @@ public class BasedeDatos : MonoBehaviour
       // Comprueba si no es la primera vez que se carga la escena
     if (PlayerPrefs.GetInt("PrimerJuego") != SceneManager.GetActiveScene().buildIndex-1 &&SceneManager.GetActiveScene().buildIndex!=0)
     {
-        StartCoroutine(ReadDataCoroutine());
+       // StartCoroutine(ReadDataCoroutine());
     }
 
     // Set a flag here to indicate whether Firebase is ready to use by your app.
@@ -63,7 +63,7 @@ public class BasedeDatos : MonoBehaviour
     // Firebase Unity SDK is not safe to use here.
   }
 });
-
+PlayerPrefs.SetInt("PrimeraCarga", SceneManager.GetActiveScene().buildIndex); 
     }
         void InitializeFirebase() {
   auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
@@ -100,36 +100,7 @@ docRef.UpdateAsync(user).ContinueWithOnMainThread(task => {
 });
     }
 
-    private void ReadData(){
-    /*  PlayerController controlador = Player.GetComponent<PlayerController>();
-        controlador.enabled = false;
-        FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
-        DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
-docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
-{
-  DocumentSnapshot snapshot = task.Result;
-  if (snapshot.Exists) {
-    Debug.Log(String.Format("Document data for {0} document:", snapshot.Id));
-    Dictionary<string, object> user = snapshot.ToDictionary();
-    Debug.Log("ahora voy a");
-  
 
-Debug.Log("x"+ Convert.ToSingle(user["x"]) +"y "+Convert.ToSingle(user["y"])+"z "+Convert.ToSingle(user["z"]));
-
-   foreach (KeyValuePair<string, object> pair in user) {
-
-      Debug.Log(String.Format("{0}: {1}", pair.Key, pair.Value));
-    }
-
-   Player.transform.position=new Vector3(Convert.ToSingle(user["x"]), Convert.ToSingle(user["y"]), Convert.ToSingle(user["z"]));
-  } else {
-    Debug.Log(String.Format("Document {0} does not exist!", snapshot.Id));
-  }
-  
-});
-
-controlador.enabled = true;*/
-    }
     private IEnumerator ReadDataCoroutine()
 {
   //load.enabled = true;
