@@ -89,7 +89,7 @@ CapsuleCollider:
   m_Height: 6.5944366
   m_Direction: 1
   m_Center: {x: 0.14821744, y: 0.7344495, z: -0.3692288}
---- !u!114 &115423240
+--- !u!114 &5171186892778523521
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -98,14 +98,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 6212553083672278116}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eb86fc40d8c8f45408ca2c104388ccfa, type: 3}
+  m_Script: {fileID: 11500000, guid: 1e50ebb4e1f3be146b53ab3c2f7445e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  Archivo: 
-  persistencia:
-    posicion: {x: 0, y: 0, z: 0}
-    escena: 0
+  load: {fileID: 0}
 --- !u!4 &6212553083672373316 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1293891031151568200, guid: 06b9d15b7d33e854cb23fe58a33238aa, type: 3}

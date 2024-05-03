@@ -185,7 +185,7 @@ public class AnubisController : MonoBehaviour
 
     private void Update()
     {
-        healthBar.fillAmount = hpMin/hpMax;
+        //healthBar.fillAmount = hpMin/hpMax;
         if(hpMin > 0)
         {
             OnAlive();
