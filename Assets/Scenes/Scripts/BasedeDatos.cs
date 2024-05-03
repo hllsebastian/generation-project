@@ -168,7 +168,7 @@ controlador.enabled = true;*/
   yield return new WaitForSeconds(2);
     controlador.enabled = true;
    // load.enabled = true;
-   yield return new WaitForSeconds(2);
+
 }
 
     void AuthStateChanged(object sender, System.EventArgs eventArgs) {

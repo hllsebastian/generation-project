@@ -14,6 +14,7 @@ public class FireBaseController : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject login,signup,profile,Forgot,notipanel;
+     int Scene;
     public TMP_InputField Logemail,logpass,Sigpass,Sigemail,SigCpass,Siguser,Forgotpass;    
     public TMP_Text noti_title,noti_mesage,profUser,profEmail;
     public Toggle remember;
@@ -81,7 +82,7 @@ public class FireBaseController : MonoBehaviour
         profile.SetActive(false);
         Forgot.SetActive(true);
     }
-         private void ReadData(){
+        /* private void ReadData(){
     //  PlayerController controlador = Player.GetComponent<PlayerController>();
       //  controlador.enabled = false;
         FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
@@ -93,8 +94,8 @@ docRef.GetSnapshotAsync().ContinueWithOnMainThread(task =>
     Debug.Log(String.Format("Document data for {0} document:", snapshot.Id));
     Dictionary<string, object> user = snapshot.ToDictionary();
     Debug.Log("ahora voy a");
-  
-SceneManager.LoadScene(Convert.ToInt32(user["scene"]));
+ 
+Scene=Convert.ToInt32(user["scene"]);
 Debug.Log("x"+ Convert.ToSingle(user["x"]) +"y "+Convert.ToSingle(user["y"])+"z "+Convert.ToSingle(user["z"]));
 
    foreach (KeyValuePair<string, object> pair in user) {
@@ -109,8 +110,43 @@ Debug.Log("x"+ Convert.ToSingle(user["x"]) +"y "+Convert.ToSingle(user["y"])+"z 
   
 });
 
-//controlador.enabled = true;*/
+//controlador.enabled = true;
+    }*/
+    private IEnumerator ReadDataCoroutine()
+{
+  //load.enabled = true;
+
+
+
+    FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
+    DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
+
+    Task<DocumentSnapshot> task = docRef.GetSnapshotAsync();
+    yield return new WaitUntil(() => task.IsCompleted);
+    //yield return new WaitForSeconds(2);
+    if (task.Result.Exists)
+    {
+        Debug.Log(String.Format("Document data for {0} document:", task.Result.Id));
+        Dictionary<string, object> user = task.Result.ToDictionary();
+        Debug.Log("ahora voy a");
+
+        Debug.Log("x" + Convert.ToSingle(user["x"]) + "y " + Convert.ToSingle(user["y"]) + "z " + Convert.ToSingle(user["z"]));
+
+        foreach (KeyValuePair<string, object> pair in user)
+        {
+            Debug.Log(String.Format("{0}: {1}", pair.Key, pair.Value));
+        }
+        if(Convert.ToInt32(user["scene"])!=SceneManager.GetActiveScene().buildIndex){
+         SceneManager.LoadScene(Convert.ToInt32(user["scene"]));
+        }
     }
+    else
+    {
+        Debug.Log(String.Format("Document {0} does not exist!", task.Result.Id));
+    }
+  yield return new WaitForSeconds(2);
+
+}
     public void StartGame(){
          //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
           if(save){
@@ -120,7 +156,8 @@ Debug.Log("x"+ Convert.ToSingle(user["x"]) +"y "+Convert.ToSingle(user["y"])+"z 
            // savesinBase.Load();
 
            ///////////////>/////> leer datos 
-          ReadData();
+          StartCoroutine(ReadDataCoroutine());
+          SceneManager.LoadScene(Scene);
 
         }else if(neww){
             //que borre la info del .json aun no implementado
@@ -176,6 +213,7 @@ Debug.Log("x"+ Convert.ToSingle(user["x"]) +"y "+Convert.ToSingle(user["y"])+"z 
 {
         
         { "scene", 0 },
+        
 };
 docRef.SetAsync(user).ContinueWithOnMainThread(task => {
         Debug.Log("Added data to the alovelace document in the users collection.");
@@ -254,7 +292,8 @@ docRef.SetAsync(user).ContinueWithOnMainThread(task => {
         profEmail.text = "" + result.User.Email;
         profUser.text = ""+ result.User.DisplayName;
         Debug.Log(result.User.DisplayName+"--"+result.User.Email);
-        int primerjuego = PlayerPrefs.GetInt("PrimerJuego");
+        StartCoroutine(ReadDataCoroutine());
+        PlayerPrefs.SetInt("PrimerJuego",Scene);
         if(PlayerPrefs.GetInt("PrimerJuego")==0){
             SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1);
 
