@@ -132,6 +132,7 @@ public async void ReadData(int des)
 
         }else if(neww){
             //que borre la info del .json aun no implementado
+            TutorialManager.Instance.RestartTutorial();
             PlayerPrefs.DeleteAll();
             SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1);
 
