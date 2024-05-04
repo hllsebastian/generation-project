@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.5459658, g: 0.6233132, b: 0.6086869, a: 1}
+  m_IndirectSpecularColor: {r: 0.5487442, g: 0.62396073, b: 0.6093368, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1015,6 +1015,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Mummy_1
       objectReference: {fileID: 0}
+    - target: {fileID: 7532639487672584271, guid: 9a2a11e0719b48d42980ef29304e24dd, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9a2a11e0719b48d42980ef29304e24dd, type: 3}
 --- !u!1001 &582153893
@@ -1881,7 +1885,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1153849729}
-  m_LocalRotation: {x: 0.14445816, y: -0.00000000851295, z: 0.000000001242801, w: 0.98951095}
+  m_LocalRotation: {x: 0.14445816, y: 0.000000008512952, z: -0.0000000012428012, w: 0.98951095}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
