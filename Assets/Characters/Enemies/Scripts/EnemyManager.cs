@@ -32,7 +32,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float timeBetweenAttacks = 3f;
     [SerializeField] private float timeToHit = 0.8f;
     [SerializeField] private float timeDamage = 0.3f;
-    [SerializeField] public int health;
+    [SerializeField] public int health = 20;
     [SerializeField] private int attackDamage = 20;
     bool hasHit = false;
     private bool isDamagable = true;
@@ -167,6 +167,7 @@ public class EnemyManager : MonoBehaviour
     private void ResetDamagable()
     {
         isDamagable = true;
+        anim.ResetTrigger("isHit");
     }
 
     public void TakeDamage(int damage)
@@ -177,17 +178,20 @@ public class EnemyManager : MonoBehaviour
             anim.SetTrigger("isHit");
             isDamagable = false;
             Invoke(nameof(ResetDamagable), 1f);
+            Debug.Log("enemy was hit" );
         }
 
         if (health <= 0) StartCoroutine(onDeath());
     }
 
     IEnumerator onDeath()
-    {
+    {   
+        agent.velocity = Vector3.zero;
         isAlive = false;
         isDamagable = false;
-        yield return new WaitForSeconds(5f);
-        Destroy(gameObject.transform.parent.gameObject);
+        yield return new WaitForSeconds(3.5f);
+        Destroy(gameObject);
+        
     }
 
     private void ResetAttack()
