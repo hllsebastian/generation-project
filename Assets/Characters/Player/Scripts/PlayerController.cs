@@ -80,13 +80,13 @@ public class PlayerController : MonoBehaviour
             if (currentAngle < lastAngle || (currentAngle - lastAngle > 180 && currentAngle - lastAngle < 360))
             {
                 Debug.Log("izq");
-                anim.SetFloat("Turning", -2.0f);
+                anim.SetFloat("Turning", -1.0f);
                 anim.SetBool("Moving", false);
             }
             if (currentAngle > lastAngle && (currentAngle - lastAngle < 180))
             {
                 Debug.Log("der");
-                anim.SetFloat("Turning", 2.0f);
+                anim.SetFloat("Turning", 1.0f);
                 anim.SetBool("Moving", false);
             }
             else
