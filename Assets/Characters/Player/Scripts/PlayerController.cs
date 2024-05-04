@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 
 public class PlayerController : MonoBehaviour
@@ -22,8 +23,9 @@ public class PlayerController : MonoBehaviour
     private bool isDamagable = true;
     private bool canAttack = true;
     private bool hasHit = false;
-    [SerializeField] public int attackDamage, health;
-    [SerializeField] private BarraddeVida barradeVida;
+    [SerializeField] public int attackDamage, health,maxhealth=100;
+   // [SerializeField] private BarraddeVida Healthslide;
+    [SerializeField] private Slider healthSlider;
     float lastAngle = 0f;
     float stopThreshold = 0.1f;
 
@@ -43,6 +45,8 @@ public class PlayerController : MonoBehaviour
         playerinput = new PlayerCam();
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
+        healthSlider = GameObject.Find("Barra deVida").GetComponent<Slider>();
+        
     }
     private void OnEnable()
     {
@@ -58,7 +62,9 @@ public class PlayerController : MonoBehaviour
     {
         CameraMain = Camera.main.transform;
         child = transform.GetChild(0).transform;
-        // barradeVida.iniciarBarra(health);
+        //Healthslide.iniciarBarra(maxhealth);
+        healthSlider.maxValue=maxhealth;
+        healthSlider.value = healthSlider.maxValue;
     }
 
     private void Update()
@@ -170,12 +176,25 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        speed = 0f;
-        health -= damage;
-        barradeVida.Cambiarvidaactial(health);
-        Debug.Log("Player hit");
-        anim.SetTrigger("isHit");
+        if (isDamagable)
+        {
+            speed = 0f;
+            health -= damage;
+            
+            Debug.Log("Player hit");
+            anim.SetTrigger("isHit");
+            isDamagable = false;
+            Invoke(nameof(ResetDamagable), 1f);
+           // Healthslide.Cambiarvidaactial(health);
+            healthSlider.value = health;
+        }
+
         if (health <= 0) StartCoroutine(onDeath());
+    }
+
+    private void ResetDamagable()
+    {
+        isDamagable = true;
     }
 
     private void OnTriggerStay(Collider other)
