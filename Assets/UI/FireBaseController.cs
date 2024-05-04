@@ -38,7 +38,11 @@ public class FireBaseController : MonoBehaviour
       _app = Firebase.FirebaseApp.DefaultInstance;
 
        InitializeFirebase();
-       
+
+        if (PlayerPrefs.GetInt("Recordar") == -1)
+    {
+        logout();
+    }
        
 
     // Set a flag here to indicate whether Firebase is ready to use by your app.
@@ -48,12 +52,7 @@ public class FireBaseController : MonoBehaviour
     // Firebase Unity SDK is not safe to use here.
   }
 });
-    StartCoroutine(ReadDataCoroutine());
-    Debug.Log("start"+Scene);
-        if (PlayerPrefs.GetInt("Recordar") == -1)
-    {
-        logout();
-    }
+
     }
     public void Oplog(){
         login.SetActive(true);
@@ -80,41 +79,44 @@ public class FireBaseController : MonoBehaviour
         Forgot.SetActive(true);
     }
         
-    private IEnumerator ReadDataCoroutine()
+public async void ReadData(int des)
 {
-  //load.enabled = true;
-
-
-
     FirebaseFirestore db = FirebaseFirestore.DefaultInstance;
     DocumentReference docRef = db.Collection("users").Document(auth.CurrentUser.UserId);
 
-    Task<DocumentSnapshot> task = docRef.GetSnapshotAsync();
-    yield return new WaitUntil(() => task.IsCompleted);
-    //yield return new WaitForSeconds(2);
-    if (task.Result.Exists)
+    DocumentSnapshot snapshot = await docRef.GetSnapshotAsync();
+
+    if (snapshot.Exists)
     {
-        Debug.Log(String.Format("Document data for {0} document:", task.Result.Id));
-        Dictionary<string, object> user = task.Result.ToDictionary();
+        Debug.Log(String.Format("Document data for {0} document:", snapshot.Id));
+        Dictionary<string, object> user = snapshot.ToDictionary();
         Debug.Log("ahora voy a");
 
-        
-
+        Scene = Convert.ToInt32(user["scene"]);
+        Debug.Log("escena/////////////////////////////////////////////////" + Scene);
         foreach (KeyValuePair<string, object> pair in user)
         {
             Debug.Log(String.Format("{0}: {1}", pair.Key, pair.Value));
         }
-        /*if(Convert.ToInt32(user["scene"])!=SceneManager.GetActiveScene().buildIndex){
-         SceneManager.LoadScene(Convert.ToInt32(user["scene"]));
-        }*/
-        Scene=Convert.ToInt32(user["scene"]);
+        if(des==1){
+         PlayerPrefs.SetInt("PrimerJuego",Scene);
+        Debug.Log("siguser"+Scene);
+        if(PlayerPrefs.GetInt("PrimerJuego")==0){
+            TutorialManager.Instance.RestartTutorial();
+            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1);
+
+        }else {
+        Opprofile();
+        }
+        }else if(des==2){
+          Debug.Log("startgame"+Scene);
+          SceneManager.LoadScene(Scene);
+        }
     }
     else
     {
-        Debug.Log(String.Format("Document {0} does not exist!", task.Result.Id));
+        Debug.Log(String.Format("Document {0} does not exist!", snapshot.Id));
     }
-  yield return new WaitForSeconds(2);
-
 }
     public void StartGame(){
          //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
@@ -125,12 +127,13 @@ public class FireBaseController : MonoBehaviour
            // savesinBase.Load();
 
            ///////////////>/////> leer datos 
-          StartCoroutine(ReadDataCoroutine());
-          Debug.Log("startgame"+Scene);
-          SceneManager.LoadScene(Scene);
+         // StartCoroutine(ReadDataCoroutine());
+         ReadData(2);
+          
 
         }else if(neww){
             //que borre la info del .json aun no implementado
+            TutorialManager.Instance.RestartTutorial();
             PlayerPrefs.DeleteAll();
             SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1);
 
@@ -262,14 +265,9 @@ docRef.SetAsync(user).ContinueWithOnMainThread(task => {
         profEmail.text = "" + result.User.Email;
         profUser.text = ""+ result.User.DisplayName;
         Debug.Log(result.User.DisplayName+"--"+result.User.Email);
-        PlayerPrefs.SetInt("PrimerJuego",Scene);
-        Debug.Log("siguser"+Scene);
-        if(PlayerPrefs.GetInt("PrimerJuego")==0){
-            SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1);
-
-        }else {
-        Opprofile();
-        }
+        //StartCoroutine(ReadDataCoroutine());
+        ReadData(1);
+       
         });
         
     }
