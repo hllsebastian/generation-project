@@ -27,8 +27,7 @@ private void Start()
     private void SpawnEnemy()
     {
         // Calcular la posición aleatoria dentro del rango definido
-        Vector3 spawnPosition = new Vector3(Random.Range(-spawnRangeX, spawnRangeX),
-            Random.Range(-spawnRangeY, spawnRangeY), 0f);
+        Vector3 spawnPosition = new Vector3(Random.Range(-5.36f, 15.75f),0f, Random.Range(-19.6f, 5.49f));
 
         // Instanciar el enemigo en la posición calculada
         GameObject enemy = enemyPool.RequestEnemy();
