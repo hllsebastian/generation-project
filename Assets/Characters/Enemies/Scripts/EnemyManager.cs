@@ -33,7 +33,7 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] private float timeToHit = 0.8f;
     [SerializeField] private float timeDamage = 0.3f;
     [SerializeField] public int health;
-    [SerializeField] private int attackDamage;
+    [SerializeField] private int attackDamage = 20;
     bool hasHit = false;
     private bool isDamagable = true;
     private bool _isAlive = true;
@@ -129,7 +129,6 @@ public class EnemyManager : MonoBehaviour
         {
             // Attack Patron
             anim.SetTrigger("isAttacking");
-
             isAttack = true;
             Invoke(nameof(ResetAttack), attackDelay);
             Invoke(nameof(DealDamage), timeToHit);
@@ -141,14 +140,22 @@ public class EnemyManager : MonoBehaviour
     {
         StartCoroutine(activateHitBox());
     }
-    void OnTriggerEnter(Collider other)
+    IEnumerator activateHitBox()
     {
-        if (other.CompareTag("Player"))
+        GameObject[] enemyHands = GameObject.FindGameObjectsWithTag("EnemyHand");
+        foreach (GameObject enemyHand in enemyHands)
         {
-            // Obtener el componente PlayerController
+            BoxCollider boxCollider = enemyHand.GetComponent<BoxCollider>();
+            boxCollider.enabled = true;
+        }
+        yield break; 
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
             PlayerController playerController = other.GetComponent<PlayerController>();
-            
-            // Si encontramos el componente PlayerController, le enviamos el daño
             if (playerController != null)
             {
                 playerController.TakeDamage(attackDamage);
@@ -156,24 +163,8 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-    IEnumerator activateHitBox()
-    {
-        GameObject[] enemyHands = GameObject.FindGameObjectsWithTag("EnemyHand");
-        foreach (GameObject enemyHand in enemyHands)
-        {
-            BoxCollider boxCollider = enemyHand.GetComponent<BoxCollider>();
-            if (boxCollider != null)
-            {
-                boxCollider.enabled = true;
-                yield return new WaitForSeconds(1.0f);
-                boxCollider.enabled = false;
-            }
-            else
-            {
-                Debug.LogWarning("El objeto con tag 'EnemyHand' no tiene un BoxCollider adjunto.");
-            }
-        }
-    }
+
+    
 
     #region TakeDamage
     private void ResetDamagable()

@@ -805,7 +805,7 @@ GameObject:
   - component: {fileID: 7532639488167611256}
   m_Layer: 0
   m_Name: Mummy_1
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -912,7 +912,7 @@ MonoBehaviour:
   timeToHit: 0.8
   timeDamage: 0.3
   health: 0
-  attackDamage: 10
+  attackDamage: 20
 --- !u!1 &7532639487672584585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2345,6 +2345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7532639487672411563}
   - component: {fileID: 6458678847847623315}
+  - component: {fileID: 527958396}
   m_Layer: 0
   m_Name: Left_Hand
   m_TagString: EnemyHand
@@ -2380,8 +2381,21 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 20, y: 20, z: 20}
+  m_Size: {x: 40, y: 40, z: 40}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &527958396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7532639487672631743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0912bebfd4665bb47925741bf09e6b05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 20
 --- !u!1 &7532639487672632717
 GameObject:
   m_ObjectHideFlags: 0
@@ -2392,6 +2406,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7532639487672334827}
   - component: {fileID: 667060313454846942}
+  - component: {fileID: 5249192}
   m_Layer: 0
   m_Name: Right_Hand
   m_TagString: EnemyHand
@@ -2427,8 +2442,21 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 20, y: 20, z: 20}
+  m_Size: {x: 40, y: 40, z: 40}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5249192
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7532639487672632717}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0912bebfd4665bb47925741bf09e6b05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackDamage: 20
 --- !u!1 &7532639487672632817
 GameObject:
   m_ObjectHideFlags: 0

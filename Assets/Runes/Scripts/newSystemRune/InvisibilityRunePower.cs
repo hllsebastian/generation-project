@@ -3,7 +3,12 @@ using System.Collections;
 
 public class InvisibilityRunePower : MonoBehaviour
 {
+    public GameObject Player;
     [SerializeField] GameObject playerShape; // the player location when is invisible
+    
+    private void Awake() {
+        Player=GameObject.FindGameObjectWithTag("Player");
+    }
     public void Use(float freezedTime)
     {
         StartCoroutine(BecomeInvisible(freezedTime));
@@ -16,6 +21,7 @@ public class InvisibilityRunePower : MonoBehaviour
         {
             render.enabled = false;
             playerShape.SetActive(true);
+            Player.layer = 0;
         }
 
         yield return new WaitForSeconds(freezedTime);
@@ -24,6 +30,7 @@ public class InvisibilityRunePower : MonoBehaviour
         {
             render.enabled = true;
             playerShape.SetActive(false);
+            Player.layer = 16;
         }
     }
 }
