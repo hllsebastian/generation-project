@@ -10,6 +10,7 @@ TagManager:
   - Enemy
   - load
   - TurnOnLight
+  - EnemyHand
   layers:
   - Default
   - TransparentFX

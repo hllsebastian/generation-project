@@ -81,13 +81,11 @@ public class PlayerController : MonoBehaviour
             {
                 Debug.Log("izq");
                 anim.SetFloat("Turning", -1.0f);
-                anim.SetBool("Moving", false);
             }
             if (currentAngle > lastAngle && (currentAngle - lastAngle < 180))
             {
                 Debug.Log("der");
                 anim.SetFloat("Turning", 1.0f);
-                anim.SetBool("Moving", false);
             }
             else
             {
@@ -99,6 +97,7 @@ public class PlayerController : MonoBehaviour
 
         if (canAttack)
             Attack();
+        //Debug.Log(anim.get("Turning"));
     }
 
     private void Move()
@@ -191,7 +190,14 @@ public class PlayerController : MonoBehaviour
             healthSlider.value = health;
         }
 
-        if (health <= 0) StartCoroutine(onDeath());
+        if (health <= 0 && SceneManager.GetActiveScene().buildIndex == 2)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        }
+        else if (health <= 0)
+        {
+            StartCoroutine(onDeath());
+        }
     }
 
     private void ResetDamagable()

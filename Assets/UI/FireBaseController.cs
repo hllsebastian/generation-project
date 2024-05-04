@@ -28,7 +28,7 @@ public class FireBaseController : MonoBehaviour
     bool isSigned=false;
     void Start() {
 
-
+ //Oplog();
         Firebase.FirebaseApp.CheckAndFixDependenciesAsync().ContinueWithOnMainThread(task => {
   var dependencyStatus = task.Result;
   if (dependencyStatus == Firebase.DependencyStatus.Available) {
