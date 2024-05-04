@@ -163,9 +163,6 @@ public class EnemyManager : MonoBehaviour
         }
     }
 
-
-    
-
     #region TakeDamage
     private void ResetDamagable()
     {
