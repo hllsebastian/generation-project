@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
 
         if (canAttack)
             Attack();
-        Debug.Log(anim.get("Turning"));
+        //Debug.Log(anim.get("Turning"));
     }
 
     private void Move()
