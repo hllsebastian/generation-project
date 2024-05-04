@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // This script handle the message to display on tutorial scene
 
@@ -11,8 +12,6 @@ public class TutorialManager : MonoBehaviour
     public static bool isStep3;
     public static bool isStep4;
     public static bool isStep5;
-    // public static bool reStartTutorial;
-
 
 
     public static TutorialManager Instance { get; set; }
@@ -31,7 +30,10 @@ public class TutorialManager : MonoBehaviour
 
     void Start()
     {
-        ShowCurrentStep();
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            ShowCurrentStep();
+        }
     }
 
     void ShowCurrentStep(bool finalStep = false)
@@ -53,7 +55,6 @@ public class TutorialManager : MonoBehaviour
         {
             tutorialSteps[currentStepIndex].SetActive(true);
         }
-
     }
 
     public void StepCompleted(bool finalStep = false)
@@ -64,7 +65,6 @@ public class TutorialManager : MonoBehaviour
 
     public void RestartTutorial()
     {
-        // reStartTutorial = false;
         isStep1 = true;
         currentStepIndex = 0;
         ShowCurrentStep();

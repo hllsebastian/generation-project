@@ -23,8 +23,8 @@ public class PlayerController : MonoBehaviour
     private bool isDamagable = true;
     private bool canAttack = true;
     private bool hasHit = false;
-    [SerializeField] public int attackDamage, health,maxhealth=100;
-   // [SerializeField] private BarraddeVida Healthslide;
+    [SerializeField] public int attackDamage, health, maxhealth = 100;
+    // [SerializeField] private BarraddeVida Healthslide;
     [SerializeField] private Slider healthSlider;
     float lastAngle = 0f;
     float stopThreshold = 0.1f;
@@ -46,7 +46,7 @@ public class PlayerController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
         healthSlider = GameObject.Find("Barra deVida").GetComponent<Slider>();
-        
+
     }
     private void OnEnable()
     {
@@ -63,7 +63,7 @@ public class PlayerController : MonoBehaviour
         CameraMain = Camera.main.transform;
         child = transform.GetChild(0).transform;
         //Healthslide.iniciarBarra(maxhealth);
-        healthSlider.maxValue=maxhealth;
+        healthSlider.maxValue = maxhealth;
         healthSlider.value = healthSlider.maxValue;
     }
 
@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         // To display only on tutorial scene
-        if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1 && TutorialManager.isStep1&&SceneManager.GetActiveScene().buildIndex==0)
+        if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1 && TutorialManager.isStep1 && SceneManager.GetActiveScene().buildIndex == 1)
         {
             TutorialManager.isStep1 = false;
             TutorialManager.Instance.StepCompleted();
@@ -145,7 +145,7 @@ public class PlayerController : MonoBehaviour
     private void Walk(Vector2 moveinput)
     {
         float y = moveinput.y;
-        float x = moveinput.x;   
+        float x = moveinput.x;
         if (moveinput.y > 0)
         {
             speed = playerSpeed;
@@ -182,12 +182,12 @@ public class PlayerController : MonoBehaviour
         {
             speed = 0f;
             health -= damage;
-            
+
             Debug.Log("Player hit");
             anim.SetTrigger("isHit");
             isDamagable = false;
             Invoke(nameof(ResetDamagable), 1f);
-           // Healthslide.Cambiarvidaactial(health);
+            // Healthslide.Cambiarvidaactial(health);
             healthSlider.value = health;
         }
 

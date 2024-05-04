@@ -48,7 +48,7 @@ MonoBehaviour:
   - name: Sample1
     clip: {fileID: 8300000, guid: 610e8d1ba6c503040950a7e96659c759, type: 3}
     isMusic: 1
-    volume: 0.815
+    volume: 0.67
     pitch: 1
     loop: 1
     source: {fileID: 0}
