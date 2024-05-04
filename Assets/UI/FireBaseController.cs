@@ -102,6 +102,7 @@ public async void ReadData(int des)
          PlayerPrefs.SetInt("PrimerJuego",Scene);
         Debug.Log("siguser"+Scene);
         if(PlayerPrefs.GetInt("PrimerJuego")==0){
+            TutorialManager.Instance.RestartTutorial();
             SceneManager.LoadScene((SceneManager.GetActiveScene().buildIndex)+1);
 
         }else {
