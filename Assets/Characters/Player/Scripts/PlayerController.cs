@@ -80,17 +80,20 @@ public class PlayerController : MonoBehaviour
             if (currentAngle < lastAngle || (currentAngle - lastAngle > 180 && currentAngle - lastAngle < 360))
             {
                 Debug.Log("izq");
-                anim.SetFloat("Turning", -1.0f);
+                anim.SetFloat("Turning", -2.0f);
                 anim.SetBool("Moving", false);
             }
             if (currentAngle > lastAngle && (currentAngle - lastAngle < 180))
             {
                 Debug.Log("der");
-                anim.SetFloat("Turning", 1.0f);
+                anim.SetFloat("Turning", 2.0f);
                 anim.SetBool("Moving", false);
             }
-
-
+            else
+            {
+                // Si el jugador no se está moviendo, resetea las animaciones
+                anim.SetFloat("Turning", 0f);
+            }
         }
         lastAngle = currentAngle;
 
@@ -129,40 +132,39 @@ public class PlayerController : MonoBehaviour
             Quaternion rotation = Quaternion.Euler(new Vector3(child.localEulerAngles.x, CameraMain.localEulerAngles.y, child.localEulerAngles.z));
             child.rotation = Quaternion.Lerp(child.rotation, rotation, Time.deltaTime * rotationSpeed);
             Walk(moveinput);
+            anim.SetBool("Moving", true);
         }
         else
         {
             anim.SetFloat("Speed", 0f);
+            anim.SetFloat("Direction", 0f);
             anim.SetBool("Moving", false);
         }
-
     }
 
     private void Walk(Vector2 moveinput)
     {
+        float y = moveinput.y;
+        float x = moveinput.x;   
         if (moveinput.y > 0)
         {
             speed = playerSpeed;
-            anim.SetBool("Moving", true);
-            anim.SetFloat("Forward", 1.0f);
+            anim.SetFloat("Speed", y);
         }
         if (moveinput.y < 0)
         {
             speed = backSpeed;
-            anim.SetBool("Moving", true);
-            anim.SetFloat("Forward", -1.0f);
+            anim.SetFloat("Speed", y);
         }
         if (moveinput.x > 0)
         {
             speed = playerSpeed;
-            anim.SetFloat("Side", 1.0f);
-            anim.SetBool("Moving", true);
+            anim.SetFloat("Direction", x);
         }
         if (moveinput.x < 0)
         {
             speed = playerSpeed;
-            anim.SetFloat("Side", -1.0f);
-            anim.SetBool("Moving", true);
+            anim.SetFloat("Direction", x);
         }
     }
     IEnumerator onDeath()
