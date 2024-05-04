@@ -185,8 +185,8 @@ public class PlayerController : MonoBehaviour
             anim.SetTrigger("isHit");
             isDamagable = false;
             Invoke(nameof(ResetDamagable), 1f);
-           // Healthslide.Cambiarvidaactial(health);
             healthSlider.value = health;
+            Debug.Log("player was hit" );
         }
 
         if (health <= 0) StartCoroutine(onDeath());
