@@ -29,13 +29,11 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] LayerMask obstacleLayer;
 
     [Header("Attacking")]
-    //[SerializeField] GameObject biteHitBox;
-    //[SerializeField] BoxCollider biteBoxCollider;
     [SerializeField] private float timeBetweenAttacks = 3f;
     [SerializeField] private float timeToHit = 0.8f;
     [SerializeField] private float timeDamage = 0.3f;
     [SerializeField] public int health;
-    [SerializeField] private int attackDamage;
+    [SerializeField] private int attackDamage = 20;
     bool hasHit = false;
     private bool isDamagable = true;
     private bool _isAlive = true;
@@ -131,7 +129,6 @@ public class EnemyManager : MonoBehaviour
         {
             // Attack Patron
             anim.SetTrigger("isAttacking");
-
             isAttack = true;
             Invoke(nameof(ResetAttack), attackDelay);
             Invoke(nameof(DealDamage), timeToHit);
@@ -143,12 +140,27 @@ public class EnemyManager : MonoBehaviour
     {
         StartCoroutine(activateHitBox());
     }
-
     IEnumerator activateHitBox()
     {
-        //BoxCollider.enabled = true;
-        yield return new WaitForSeconds(timeDamage);
-       // BoxCollider.enabled = false;
+        GameObject[] enemyHands = GameObject.FindGameObjectsWithTag("EnemyHand");
+        foreach (GameObject enemyHand in enemyHands)
+        {
+            BoxCollider boxCollider = enemyHand.GetComponent<BoxCollider>();
+            boxCollider.enabled = true;
+        }
+        yield break; 
+    }
+    
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            PlayerController playerController = other.GetComponent<PlayerController>();
+            if (playerController != null)
+            {
+                playerController.TakeDamage(attackDamage);
+            }
+        }
     }
 
     #region TakeDamage

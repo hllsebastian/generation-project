@@ -28,6 +28,7 @@ public class AdministradorDeEscenas : MonoBehaviour
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             TutorialManager.Instance.StepCompleted(true);
+            PlayerPrefs.SetInt("PrimerJuego",SceneManager.GetActiveScene().buildIndex);
         }
     }
 }
