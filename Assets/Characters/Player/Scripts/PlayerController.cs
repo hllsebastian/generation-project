@@ -19,10 +19,12 @@ public class PlayerController : MonoBehaviour
     private PlayerCam playerinput;
     private Transform child;
     private Animator anim;
+    public string enemyLayerName = "Enemy";
     private bool _isAlive = true;
     private bool isDamagable = true;
     private bool canAttack = true;
     private bool hasHit = false;
+    public float attackRange = 1.0f;
     [SerializeField] public int attackDamage, health, maxhealth = 100;
     // [SerializeField] private BarraddeVida Healthslide;
     [SerializeField] private Slider healthSlider;
@@ -97,7 +99,6 @@ public class PlayerController : MonoBehaviour
 
         if (canAttack)
             Attack();
-        //Debug.Log(anim.get("Turning"));
     }
 
     private void Move()
@@ -130,7 +131,10 @@ public class PlayerController : MonoBehaviour
         {
             Quaternion rotation = Quaternion.Euler(new Vector3(child.localEulerAngles.x, CameraMain.localEulerAngles.y, child.localEulerAngles.z));
             child.rotation = Quaternion.Lerp(child.rotation, rotation, Time.deltaTime * rotationSpeed);
-            Walk(moveinput);
+            if (canAttack)
+            {
+                Walk(moveinput);
+            }
             anim.SetBool("Moving", true);
         }
         else
@@ -175,43 +179,40 @@ public class PlayerController : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void TakeDamage(int damage)
-    {
-        if (isDamagable)
-        {
-            speed = 0f;
-            health -= damage;
-
-            Debug.Log("Player hit");
-            anim.SetTrigger("isHit");
-            isDamagable = false;
-            Invoke(nameof(ResetDamagable), 1f);
-            // Healthslide.Cambiarvidaactial(health);
-            healthSlider.value = health;
-        }
-
-        if (health <= 0 && SceneManager.GetActiveScene().buildIndex == 2)
-        {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        }
-        else if (health <= 0)
-        {
-            StartCoroutine(onDeath());
-        }
-    }
-
+    #region TakeDamage
     private void ResetDamagable()
     {
         isDamagable = true;
     }
 
-    private void OnTriggerStay(Collider other)
+    public void TakeDamage(int damage)
     {
-        if (other.gameObject.CompareTag("Enemy") && !hasHit)
+        if (isDamagable)
         {
-            Debug.Log("Damage to: " + other.gameObject.name);
-            other.GetComponent<EnemyManager>().TakeDamage(attackDamage);
-            hasHit = true;
+            health -= damage;
+            anim.SetTrigger("GetHit");
+            isDamagable = false;
+            Invoke(nameof(ResetDamagable), 1f);
+            Debug.Log("player was hit");
+        }
+
+        if (health <= 0) StartCoroutine(onDeath());
+    }
+
+
+    private void ResetAttack()
+    {
+        anim.ResetTrigger("attack");
+
+    }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            EnemyManager enemy = other.GetComponent<EnemyManager>();
+            enemy.TakeDamage(attackDamage);
         }
 
         // Only to use on Tutorial Scene
@@ -235,9 +236,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private IEnumerator EnableAttack()
+    IEnumerator EnableAttack()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);  // Adjust this time based on your attack animation
+
+        // Check for collision with Enemy during the attack animation (adjust based on your weapon reach)
+        Collider[] hitEnemies = Physics.OverlapSphere(transform.position + transform.forward, attackRange, LayerMask.GetMask(enemyLayerName));
+        foreach (Collider enemyCollider in hitEnemies)
+        {
+            EnemyManager enemy = enemyCollider.GetComponent<EnemyManager>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(attackDamage);
+                hasHit = true;  // Reset hit flag if needed
+            }
+        }
+
         canAttack = true;
     }
 }
+#endregion

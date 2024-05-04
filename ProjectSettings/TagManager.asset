@@ -11,6 +11,7 @@ TagManager:
   - load
   - TurnOnLight
   - EnemyHand
+  - Sword
   layers:
   - Default
   - TransparentFX
@@ -27,7 +28,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Enemy
   - PlayerLayer
   - Ground
   - Obstacle
