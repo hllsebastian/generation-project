@@ -170,23 +170,12 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isDamagable)
-        {
-            speed = 0f;
-            health -= damage;
-            barradeVida.Cambiarvidaactial(health);
-            Debug.Log("Player hit");
-            anim.SetTrigger("isHit");
-            isDamagable = false;
-            Invoke(nameof(ResetDamagable), 1f);
-        }
-
+        speed = 0f;
+        health -= damage;
+        barradeVida.Cambiarvidaactial(health);
+        Debug.Log("Player hit");
+        anim.SetTrigger("isHit");
         if (health <= 0) StartCoroutine(onDeath());
-    }
-
-    private void ResetDamagable()
-    {
-        isDamagable = true;
     }
 
     private void OnTriggerStay(Collider other)
