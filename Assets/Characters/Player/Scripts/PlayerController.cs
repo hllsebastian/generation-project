@@ -45,6 +45,8 @@ public class PlayerController : MonoBehaviour
         playerinput = new PlayerCam();
         controller = GetComponent<CharacterController>();
         anim = GetComponentInChildren<Animator>();
+        healthSlider = GameObject.Find("Barra deVida").GetComponent<Slider>();
+        
     }
     private void OnEnable()
     {
