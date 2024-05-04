@@ -51,7 +51,7 @@ public class BasedeDatos : MonoBehaviour
        //PlayerPrefs.SetInt("PrimeraCarga", 0); //usado para probar el juego 
 
       // Comprueba si no es la primera vez que se carga la escena
-    if (PlayerPrefs.GetInt("PrimerJuego") != SceneManager.GetActiveScene().buildIndex -1&&SceneManager.GetActiveScene().buildIndex!=0)
+    if (PlayerPrefs.GetInt("PrimerJuego") != SceneManager.GetActiveScene().buildIndex-1 &&SceneManager.GetActiveScene().buildIndex!=0)
     {
         StartCoroutine(ReadDataCoroutine());
     }
@@ -63,6 +63,7 @@ public class BasedeDatos : MonoBehaviour
     // Firebase Unity SDK is not safe to use here.
   }
 });
+
     }
         void InitializeFirebase() {
   auth = Firebase.Auth.FirebaseAuth.DefaultInstance;
