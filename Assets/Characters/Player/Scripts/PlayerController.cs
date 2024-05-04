@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
         controller.Move(move * Time.deltaTime * playerSpeed);
 
         // To display only on tutorial scene
-        if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1 && TutorialManager.isStep1&&SceneManager.GetActiveScene().buildIndex==0)
+        if (Mathf.Abs(moveinput.x) > 0.1 && Mathf.Abs(moveinput.y) > 0.1 && TutorialManager.isStep1)
         {
             TutorialManager.isStep1 = false;
             TutorialManager.Instance.StepCompleted();
@@ -190,7 +190,11 @@ public class PlayerController : MonoBehaviour
             healthSlider.value = health;
         }
 
-        if (health <= 0) StartCoroutine(onDeath());
+        if (health <= 0&&SceneManager.GetActiveScene().buildIndex==2) {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        }else if(health <= 0){
+             StartCoroutine(onDeath());
+        }
     }
 
     private void ResetDamagable()
