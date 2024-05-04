@@ -29,8 +29,6 @@ public class EnemyManager : MonoBehaviour
     [SerializeField] LayerMask obstacleLayer;
 
     [Header("Attacking")]
-    //[SerializeField] GameObject biteHitBox;
-    //[SerializeField] BoxCollider biteBoxCollider;
     [SerializeField] private float timeBetweenAttacks = 3f;
     [SerializeField] private float timeToHit = 0.8f;
     [SerializeField] private float timeDamage = 0.3f;
@@ -143,12 +141,38 @@ public class EnemyManager : MonoBehaviour
     {
         StartCoroutine(activateHitBox());
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            // Obtener el componente PlayerController
+            PlayerController playerController = other.GetComponent<PlayerController>();
+            
+            // Si encontramos el componente PlayerController, le enviamos el daño
+            if (playerController != null)
+            {
+                playerController.TakeDamage(attackDamage);
+            }
+        }
+    }
 
     IEnumerator activateHitBox()
     {
-        //BoxCollider.enabled = true;
-        yield return new WaitForSeconds(timeDamage);
-       // BoxCollider.enabled = false;
+        GameObject[] enemyHands = GameObject.FindGameObjectsWithTag("EnemyHand");
+        foreach (GameObject enemyHand in enemyHands)
+        {
+            BoxCollider boxCollider = enemyHand.GetComponent<BoxCollider>();
+            if (boxCollider != null)
+            {
+                boxCollider.enabled = true;
+                yield return new WaitForSeconds(1.0f);
+                boxCollider.enabled = false;
+            }
+            else
+            {
+                Debug.LogWarning("El objeto con tag 'EnemyHand' no tiene un BoxCollider adjunto.");
+            }
+        }
     }
 
     #region TakeDamage

@@ -908,6 +908,11 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 262144
+  timeBetweenAttacks: 3
+  timeToHit: 0.8
+  timeDamage: 0.3
+  health: 0
+  attackDamage: 10
 --- !u!1 &7532639487672584585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2342,7 +2347,7 @@ GameObject:
   - component: {fileID: 6458678847847623315}
   m_Layer: 0
   m_Name: Left_Hand
-  m_TagString: Untagged
+  m_TagString: EnemyHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2389,7 +2394,7 @@ GameObject:
   - component: {fileID: 667060313454846942}
   m_Layer: 0
   m_Name: Right_Hand
-  m_TagString: Untagged
+  m_TagString: EnemyHand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
